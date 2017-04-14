@@ -5,6 +5,7 @@ function Vehicle(props) {
     <div className="vehicle">
       <h1>{props.name}</h1>
       Стоимость: {props.cost}
+      <br />
       <a href={"/vehicles/"+props.id}>Подробнее</a>
     </div>
   );
