@@ -1,4 +1,5 @@
 import React from 'react';
+import RegistrationApi from '../services/api/RegistrationAPI';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -58,11 +59,10 @@ class SignUp extends React.Component {
     var data = {
       username: this.state.username,
       email: this.state.email,
-      password: this.state.passsword,
-      confirmPassword: this.state.confirmPassword
+      password: this.state.password
     }
 
-    alert(JSON.stringify(data));
+    RegistrationApi.userRegister(data);
   }
 
   render() {
