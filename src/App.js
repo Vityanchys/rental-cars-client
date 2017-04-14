@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Vehicles from './components/Vehicles';
+import SignUp from './components/SignUp';
 
 var vehicles = [
   {
@@ -19,10 +21,17 @@ var vehicles = [
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <Vehicles vehicles={vehicles} />
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" render={() => (
+            <Vehicles vehicles={vehicles} />
+          )}/>
+          <Route exact path="/signup" render={() => (
+            <SignUp />
+          )}/>
+        </div>
+      </Router>
     );
   }
 }
