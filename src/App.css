@@ -22,3 +22,20 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.vehicle {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eee;
+}
+
+.navbar {
+  margin: 20px;
+}
+.navbar a {
+  padding: 20px;
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
+}
