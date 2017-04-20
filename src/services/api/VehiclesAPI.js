@@ -15,7 +15,8 @@ exports.getVehicles = async () => {
 }
 
 exports.getVehicle = async (id) => {
-  vehicles.map (vehicle => {
-      return vehicle.id === id;
+  var vehicle = vehicles.find(vehicle => {
+    return vehicle.id === id;
   });
+  return vehicle;
 }

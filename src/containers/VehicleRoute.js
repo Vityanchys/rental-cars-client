@@ -24,7 +24,7 @@ class VehicleRoute extends React.Component {
       return <div>Not loaded</div>;
     }
 
-    return <Vehicle name={this.vehicle.name} cost={this.vehicle.cost} />;
+    return <Vehicle name={this.state.vehicle.name} cost={this.state.vehicle.cost} id={this.state.vehicle.id} />;
   }
 }
 
