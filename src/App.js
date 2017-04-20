@@ -8,7 +8,7 @@ import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import Navbar from './components/Navbar';
 import VehiclesRoute from './containers/VehiclesRoute';
 import VehicleRoute from './containers/VehicleRoute';
-import SignUp from './components/SignUp';
+import SignUpPage from './containers/SignUpPage';
 
 class App extends Component {
   render() {
@@ -19,9 +19,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={VehiclesRoute} />
             <Route exact path="/vehicles/:id" component={VehicleRoute} />
-            <Route exact path="/signup" render={() => (
-              <SignUp />
-            )} />
+            <Route path="/signup" component={SignUpPage} />
           </div>
         </Router>
       </MuiThemeProvider>
