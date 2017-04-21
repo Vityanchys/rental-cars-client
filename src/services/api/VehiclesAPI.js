@@ -21,14 +21,19 @@ exports.getVehicles = async () => {
   } catch (err) {
     console.log('Fetch Error :-S', err);
   }
-  
+
   return vehicles;
 }
 
 exports.getVehicle = async (id) => {
- /*var vehicle = vehicles.find(vehicle => {
-    return vehicle.id === id;
-  });
+  let vehicle;
 
-  return vehicle;*/
+  try {
+    const response = await fetch(ServerURL + 'vehicles/' + id);
+    vehicle = await handeResponse(response);
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+
+  return vehicle;
 }
