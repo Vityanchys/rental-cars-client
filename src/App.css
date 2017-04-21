@@ -49,3 +49,13 @@
   font-size: large;
   font-weight: bold;
 }
+
+.vehicle-card {
+  max-width: 600px;
+  margin: 20px;
+}
+
+.vehicles {
+    text-align: center;
+    display: inline-block;
+}

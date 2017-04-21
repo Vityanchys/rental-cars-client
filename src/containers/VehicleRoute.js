@@ -1,5 +1,5 @@
 import React from 'react';
-import Vehicle from '../components/Vehicle';
+import VehiclePage from '../components/VehiclePage';
 
 import VehiclesAPI from '../services/api/VehiclesAPI';
 
@@ -24,7 +24,7 @@ class VehicleRoute extends React.Component {
       return <div>Not loaded</div>;
     }
 
-    return <Vehicle name={this.state.vehicle.name} cost={this.state.vehicle.cost} id={this.state.vehicle.id} />;
+    return <VehiclePage image={this.state.vehicle.image} name={this.state.vehicle.name} cost={this.state.vehicle.cost} id={this.state.vehicle.id} />;
   }
 }
 

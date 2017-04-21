@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import VehiclesRoute from './containers/VehiclesRoute';
 import VehicleRoute from './containers/VehicleRoute';
 import SignUpPage from './containers/SignUpPage';
+import LogInPage from './containers/LogInPage';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/" component={VehiclesRoute} />
             <Route path="/vehicles/:id" component={VehicleRoute} />
             <Route path="/signup" component={SignUpPage} />
+            <Route path="/login" component={LogInPage} />
           </div>
         </Router>
       </MuiThemeProvider>
