@@ -16,7 +16,7 @@ exports.getVehicles = async () => {
   let vehicles;
 
   try {
-    const response = await fetch(ServerURL + 'vehicles/');
+    const response = await fetch('car/cars');
     vehicles = await handeResponse(response);
   } catch (err) {
     console.log('Fetch Error :-S', err);
@@ -29,7 +29,7 @@ exports.getVehicle = async (id) => {
   let vehicle;
 
   try {
-    const response = await fetch(ServerURL + 'vehicles/' + id);
+    const response = await fetch(id);
     vehicle = await handeResponse(response);
   } catch (err) {
     console.log('Fetch Error :-S', err);
