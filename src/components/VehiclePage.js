@@ -7,9 +7,11 @@ function VehiclePage(props) {
   return (
     <div>
       <h1>To be designed</h1>
-      <ul>
-        <li>Name: {props.name}</li>
-        <li>Cost: {props.cost}</li>
+      <ul style={{"list-style-type": "none"}}>
+        <li>Тип кузова: {props.bodyType}</li>
+        <li>Марка: {props.brand}</li>
+        <li>Модель: {props.model}</li>
+        <li>Регистрационный номер: {props.registrationNumber}</li>
       </ul>
       <img src={props.image} width="600" />
     </div>
