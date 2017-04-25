@@ -8,6 +8,7 @@ function Navbar() {
         <Link to="/">Главная</Link>
       </div>
       <div className="navbar-right">
+        <Link to="/add">Добавить Т/С</Link>
         <Link to="/login">Вход</Link>
         <Link to="/signup">Регистрация</Link>
       </div>
