@@ -10,6 +10,7 @@ import VehiclesRoute from './containers/VehiclesRoute';
 import VehicleRoute from './containers/VehicleRoute';
 import SignUpPage from './containers/SignUpPage';
 import LogInPage from './containers/LogInPage';
+import ProfilePage from './containers/ProfilePage';
 
 class App extends Component {
   render() {
