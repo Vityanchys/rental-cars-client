@@ -19,10 +19,10 @@ const SignUpForm = ({
       <div className="field-line">
         <TextField
           floatingLabelText="Имя"
-          name="name"
-          errorText={errors.name}
+          name="firstName"
+          errorText={errors.firstName}
           onChange={onChange}
-          value={user.name}
+          value={user.firstName}
         />
       </div>
 
@@ -59,6 +59,16 @@ const SignUpForm = ({
 
       <div className="field-line">
         <TextField
+            floatingLabelText="Номер паспорта"
+            name="passportId"
+            errorText={errors.passportId}
+            onChange={onChange}
+            value={user.passportId}
+        />
+      </div>
+
+      <div className="field-line">
+        <TextField
           floatingLabelText="Телефон"
           name="phone"
           errorText={errors.phone}
@@ -71,7 +81,7 @@ const SignUpForm = ({
         <RaisedButton type="submit" label="Зарегистрироваться" primary />
       </div>
 
-      <CardText>Уже зарегестрированы? <Link to={'/login'}>Войти</Link></CardText>
+      <CardText>Уже зарегистрированы? <Link to={'/login'}>Войти</Link></CardText>
     </form>
   </Card>
 );
