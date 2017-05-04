@@ -14,7 +14,7 @@ exports.register = async (user) => {
       password: user.password,
       passportId: user.passportId,
       admin: false,
-      phone: user.phone,
+      phone: "+375" + user.phonePrefix + user.phone,
     })
   })
   return response;
