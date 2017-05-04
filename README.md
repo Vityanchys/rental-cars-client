@@ -2,7 +2,8 @@
 
 To run the app locally:
 
-+ Install and run temporary [local server](https://github.com/mick842/tmp-server)
++ Install [local server](https://github.com/Paulexx/rental-cars-server)
++ Enable CORS filter in 'CATALINA_BASE/conf/web.xml' [instruction](http://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#CORS_Filter)
 
 + git clone https://github.com/mick842/rental-cars-client.git
 + cd rental-cars-client
