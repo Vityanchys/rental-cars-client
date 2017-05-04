@@ -2,8 +2,6 @@ import React from 'react';
 import InputMask from 'react-input-mask';
 
 import { Card, TextField, RaisedButton, Divider, DatePicker, SelectField, MenuItem } from 'material-ui';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 const VehicleAddForm = ({
   onSubmit,

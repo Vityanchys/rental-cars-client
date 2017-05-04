@@ -5,6 +5,9 @@ import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';*/
 import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 import Navbar from './components/Navbar';
 import VehiclesRoute from './containers/VehiclesRoute';
 import VehicleRoute from './containers/VehicleRoute';
