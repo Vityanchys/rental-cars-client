@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import VehicleAddForm from '../components/VehicleAddForm';
 import { ServerMethodAddVehicle } from '../constants/Constants';
 import { Redirect } from 'react-router-dom';

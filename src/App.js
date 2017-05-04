@@ -28,6 +28,7 @@ class App extends Component {
             <Route path="/signup" component={SignUpPage} />
             <Route path="/login" component={LogInPage} />
             <Route path="/add" component={VehicleAddPage} />
+            <Route path="/profile" component={ProfilePage} />
           </div>
         </Router>
       </MuiThemeProvider>

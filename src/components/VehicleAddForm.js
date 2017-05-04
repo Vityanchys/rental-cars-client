@@ -18,7 +18,7 @@ const VehicleAddForm = ({
 
         {errors.summary && <p className="error-message">{errors.summary}</p>}
 
-        <div style={{float: "left", width: "50%"}}>
+        <div style={{ float: "left", width: "50%" }}>
           <div>
             <TextField
               floatingLabelText="Регистрационный номер"
@@ -80,7 +80,7 @@ const VehicleAddForm = ({
               errorText={errors.maintenanceDate}
               onChange={
                 (empt, payload) => {
-                  name = "maintenanceDate"
+                  let name = "maintenanceDate"
                   onMaterialFieldChange(name, payload)
                 }}
             />
@@ -94,7 +94,7 @@ const VehicleAddForm = ({
               errorText={errors.gearboxType}
               onChange={
                 (event, key, payload) => {
-                  name = "gearboxType"
+                  let name = "gearboxType"
                   onMaterialFieldChange(name, payload)
                 }} >
               <MenuItem value="Авто" primaryText="Авто" />
@@ -103,7 +103,7 @@ const VehicleAddForm = ({
           </div>
         </div>
 
-        <div style={{float: "right", width: "50%"}}>
+        <div style={{ float: "right", width: "50%" }}>
           <div>
             <TextField
               floatingLabelText="Объём двигателя"
@@ -123,7 +123,7 @@ const VehicleAddForm = ({
               errorText={errors.bodyType}
               onChange={
                 (event, key, payload) => {
-                  name = "bodyType"
+                  let name = "bodyType"
                   onMaterialFieldChange(name, payload)
                 }} >
               <MenuItem value="Седан" primaryText="Седан" />
