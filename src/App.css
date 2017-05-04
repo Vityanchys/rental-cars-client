@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -23,7 +24,9 @@
   to { transform: rotate(360deg); }
 }
 
-
+.btn {
+  padding: 100px 0 0 0;
+}
 .vehicle {
   margin: 20px;
   padding: 20px;
@@ -48,6 +51,11 @@
   text-decoration: none;
   font-size: large;
   font-weight: bold;
+}
+
+.profile-left {
+  float: left;
+  font-size: large;
 }
 
 .vehicle-card {

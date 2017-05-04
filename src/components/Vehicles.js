@@ -6,16 +6,7 @@ function Vehicles(props) {
   return (
   <div className="vehicles"> {
     props.vehicles.map ((vehicle) => {
-      console.log(vehicle.pricePerDay);
-      return (
-        <Vehicle
-          key={vehicle.id}
-          image={vehicle.image}
-          name={vehicle.brand + " " + vehicle.model}
-          cost={vehicle.pricePerDay}
-          id={vehicle.id}
-        />
-      )
+      return <Vehicle key={vehicle.id} mark={vehicle.mark} model={vehicle.model} image={vehicle.image} pricePerDay={vehicle.pricePerDay} status={vehicle.status} id={vehicle.id} />
     })}
   </div>
   );

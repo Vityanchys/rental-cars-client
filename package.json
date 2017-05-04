@@ -6,7 +6,6 @@
     "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-input-mask": "^0.8.0",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1"
   },
@@ -18,5 +17,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

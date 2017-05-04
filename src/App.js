@@ -11,6 +11,7 @@ import VehicleRoute from './containers/VehicleRoute';
 import SignUpPage from './containers/SignUpPage';
 import LogInPage from './containers/LogInPage';
 import VehicleAddPage from './containers/VehicleAddPage';
+import ProfilePage from './containers/ProfilePage';
 
 class App extends Component {
   render() {
@@ -20,7 +21,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={VehiclesRoute} />
-            <Route path="/vehicles/:id" component={VehicleRoute} />
+            <Route path="/car/cars/:id" component={VehicleRoute} />
             <Route path="/signup" component={SignUpPage} />
             <Route path="/login" component={LogInPage} />
             <Route path="/add" component={VehicleAddPage} />
