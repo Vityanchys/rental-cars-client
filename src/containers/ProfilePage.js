@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import { ServerURL } from '../constants/Constants';
+import React, { Component } from 'react';
 import ProfileForm from '../components/ProfileForm';
 
 class ProfilePage extends Component {
@@ -11,9 +10,9 @@ class ProfilePage extends Component {
     };
 
   }
-componentDidMount() {
-  this.setState({user:{name:"name", email:"email"}})
-}
+  componentDidMount() {
+    this.setState({ user: { name: "name", email: "email" } })
+  }
 
   render() {
     return (

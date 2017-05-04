@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import LogInForm from '../components/LogInForm';
 import { ServerURL } from '../constants/Constants';
 
@@ -40,7 +40,7 @@ class LogInPage extends Component {
           errors: {}
         });
 
-       alert("Valid");
+        alert("Valid");
       } else {
         // failure
         const errors = xhr.response.errors ? xhr.response.errors : {};

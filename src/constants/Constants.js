@@ -1,1 +1,1 @@
-export const ServerURL = "http://localhost:8080/";
+export const ServerURL = "http://localhost:8080/rental-cars-server/";
