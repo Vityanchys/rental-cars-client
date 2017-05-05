@@ -8,12 +8,16 @@ const ProfileForm = ({
     <Card className="container">
       <h2 className="card-heading">Личный кабинет</h2>
       <div className="profile-left">
-        <div>Name: {user.name}</div>
+        <div>Name: {user.firstName} {user.lastName}</div>
         <div>Email: {user.email}</div>
-        <div>Pasport id: coming soon</div>
+        <div>Pasport id: {user.passportId}</div>
+        <div>Phone: {user.phone}</div>
         <div className="btn">
           <RaisedButton label="Редактировать" />
         </div>
+      </div>
+      <div className="btn-right">
+        <RaisedButton label="Избранное" />
       </div>
     </Card>
   );

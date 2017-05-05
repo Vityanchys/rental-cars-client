@@ -11,7 +11,7 @@ class ProfilePage extends Component {
 
   }
   componentDidMount() {
-    this.setState({ user: { name: "name", email: "email" } })
+    this.setState({ user: { firstName: 'Viktar', lastName: 'Denisov', email: 'vityanchys@gmail.com', passportId: 'KH2209343', phone: '375291233219'  } })
   }
 
   render() {
