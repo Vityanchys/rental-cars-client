@@ -1,0 +1,9 @@
+User {
+  int id; // Идентификатор
+  String firstName; // Имя
+  String lastName; // Фамилия
+  String password; // Пароль
+  String passportId; // Номер паспорта
+  boolean admin; // Флаг админа
+  String phone; // Номер телефона
+}
