@@ -1,27 +1,27 @@
 getCarById(int id) {
-  Вызов функции: "/cars/{id}"
+  Вызов функции: "/car/cars/{id}"
   Возвращаемые значения: Объект Car
 }
 
 getAllCars() {
-  Вызов функции: "/cars"
+  Вызов функции: "/car/cars"
   Возвращаемые значения: Список типа List<Car>
 }
 
 add(Car car) {
-  Вызов функции: "/add"
+  Вызов функции: "/car/add"
   Возвращаемые значения: 1) Объект ResponseEntity<>(HttpStatus.OK) при положительном сценарии
                          2) Объект ResponseEntity<>(HttpStatus.BAD_REQUEST) при отказе
 }
 
 edit(Car car) {
-  Вызов функции: "/edit"
+  Вызов функции: "/car/edit"
   Возвращаемые значения: 1) Объект ResponseEntity<>(HttpStatus.OK) при положительном сценарии
                          2) Объект ResponseEntity<>(HttpStatus.BAD_REQUEST) при отказе
 }
 
 delete(Car car) {
-  Вызов функции: "/delete"
+  Вызов функции: "/car/delete"
   Возвращаемые значения: 1) Объект ResponseEntity<>(HttpStatus.OK) при положительном сценарии
                          2) Объект ResponseEntity<>(HttpStatus.BAD_REQUEST) при отказе
 }
