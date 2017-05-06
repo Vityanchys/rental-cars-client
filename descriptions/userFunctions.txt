@@ -1,27 +1,27 @@
 getUserById(int id) {
-  Вызов функции: "/users/{id}"
+  Вызов функции: "/user/users/{id}"
   Возвращаемые значения: Объект User
 }
 
 getAllUsers() {
-  Вызов функции: "/users"
+  Вызов функции: "/user/users"
   Возвращаемые значения: Список типа List<User>
 }
 
 add(User user) {
-  Вызов функции: "/register"
+  Вызов функции: "/user/register"
   Возвращаемые значения: 1) Объект ResponseEntity<>(HttpStatus.OK) при положительном сценарии
                          2) Объект ResponseEntity<>(HttpStatus.BAD_REQUEST) при отказе
 }
 
 edit(User user) {
-  Вызов функции: "/edit"
+  Вызов функции: "/user/edit"
   Возвращаемые значения: 1) Объект ResponseEntity<>(HttpStatus.OK) при положительном сценарии
                          2) Объект ResponseEntity<>(HttpStatus.BAD_REQUEST) при отказе
 }
 
 delete(User user) {
-  Вызов функции: "/register"
+  Вызов функции: "/user/delete"
   Возвращаемые значения: 1) Объект ResponseEntity<>(HttpStatus.OK) при положительном сценарии
                          2) Объект ResponseEntity<>(HttpStatus.BAD_REQUEST) при отказе
 }
