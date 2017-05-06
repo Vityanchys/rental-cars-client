@@ -1,0 +1,16 @@
+Vehicle {
+  String mark; // Марка Т/С
+  String model; // Модель Т/С
+  int year; // Год выпуска
+  Date lastTI; // Дата последнего ТО
+  String gearboxType; // Тип КПП
+  float engineVolume; // Объём двигателя (?)
+  String bodyType; // Тип кузова
+  int capacity; //
+  int carryingCapacity; //
+  float pricePerHour; // Цена за час
+  float pricePerDay; // Цена за день
+  String type; // Тип Т/С (легковое, грузовое, ...)
+  String status; // Статус (занята, свободна, ...)
+  String image; // Кодированное изображение
+}
