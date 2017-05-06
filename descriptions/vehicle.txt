@@ -4,10 +4,10 @@ Vehicle {
   int year; // Год выпуска
   Date lastTI; // Дата последнего ТО
   String gearboxType; // Тип КПП
-  float engineVolume; // Объём двигателя (?)
+  float engineVolume; // Объём двигателя
   String bodyType; // Тип кузова
-  int capacity; //
-  int carryingCapacity; //
+  int capacity; // Вместимость
+  int carryingCapacity; // Грузоподъемность
   float pricePerHour; // Цена за час
   float pricePerDay; // Цена за день
   String type; // Тип Т/С (легковое, грузовое, ...)
