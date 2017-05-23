@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VehicleAddForm from '../components/VehicleAddForm';
 import { ServerMethodAddVehicle } from '../constants/Constants';
 import { Redirect } from 'react-router-dom';
+import VehiclesAPI from '../services/api/VehiclesAPI';
 
 
 class VehicleAddPage extends Component {
@@ -28,12 +29,35 @@ class VehicleAddPage extends Component {
       complete: false
     };
 
-    this.processForm = this.processForm.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.changeVehicle = this.changeVehicle.bind(this);
     this.changeMaterialUIField = this.changeMaterialUIField.bind(this);
   }
 
-  
+  onSubmit(event) {
+    event.preventDefault();
+
+    const vehicle = this.state.vehicle;
+
+    const response = await VehiclesAPI.createVehicle(vehicle);
+
+    if (response.status === 200) {
+      response = await JSON.stringify(response);
+      this.setState({
+        errors: {},
+        complete: true,
+        id: response.id
+      });
+    } else {
+      response = await JSON.stringify(response);
+      const errors = response.errors ? response.errors : {};
+      errors.summary = response.message;
+
+      this.setState({
+        errors
+      });
+    }
+  }
 
   //@param {object} event - the JavaScript event object
   changeVehicle(event) {
@@ -64,7 +88,7 @@ class VehicleAddPage extends Component {
     } else {
       return (
         <VehicleAddForm
-          onSubmit={this.processForm}
+          onSubmit={this.onSubmit}
           onChange={this.changeVehicle}
           onMaterialFieldChange={this.changeMaterialUIField} //?
           errors={this.state.errors}
