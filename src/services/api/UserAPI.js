@@ -19,3 +19,24 @@ exports.register = async (user) => {
   })
   return response;
 }
+
+exports.login = async (user) => {
+  let response;
+
+  try {
+    response = await fetch(ServerURL + "auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password
+      })
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  return response;
+}
