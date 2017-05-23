@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import ProfileForm from '../components/ProfileForm';
+import User from '../modules/User';
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: ""
+      user: User.get()
     };
 
-  }
-  componentDidMount() {
-    this.setState({ user: { firstName: 'Viktar', lastName: 'Denisov', email: 'vityanchys@gmail.com', passportId: 'KH2209343', phone: '375291233219'  } })
   }
 
   render() {
