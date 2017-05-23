@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import LogInForm from '../components/LogInForm';
-import { ServerURL } from '../constants/Constants';
+import { Redirect } from 'react-router-dom';
+import UserAPI from '../services/api/UserAPI';
+import User from '../modules/User';
+import Auth from '../modules/Auth';
 
 
 class LogInPage extends Component {
@@ -12,46 +15,37 @@ class LogInPage extends Component {
       user: {
         email: '',
         password: ''
-      }
+      },
+      authorized: false
     };
 
-    this.processForm = this.processForm.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.changeUser = this.changeUser.bind(this);
   }
 
-  //@param {object} event - the JavaScript event object
-  processForm(event) {
+  async onSubmit(event) {
     event.preventDefault();
 
-    // create a string for an HTTP body message
-    const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
-    const formData = `email=${email}&password=${password}`;
+    let response = await UserAPI.login(this.state.user);
 
-    // create an AJAX request
-    const xhr = new XMLHttpRequest();
-    xhr.open('post', ServerURL + 'auth/login');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200) {
-        // success
-        this.setState({
-          errors: {}
-        });
+    if (response.status === 200) {
+      response = await JSON.stringify(response);
+      User.set(response.user);
+      Auth.authenticateUser(response.token);
 
-        alert("Valid");
-      } else {
-        // failure
-        const errors = xhr.response.errors ? xhr.response.errors : {};
-        errors.summary = xhr.response.message;
+      this.setState({
+        errors: {},
+        authorized: true
+      });
+    } else {
+      response = await JSON.stringify(response);
+      const errors = response.errors ? response.errors : {};
+      errors.summary = "Неправильный логин или пароль";
 
-        this.setState({
-          errors
-        });
-      }
-    });
-    xhr.send(formData);
+      this.setState({
+        errors
+      });
+    }
   }
 
   //@param {object} event - the JavaScript event object
@@ -66,9 +60,12 @@ class LogInPage extends Component {
   }
 
   render() {
+    if (this.state.authorized) {
+      return <Redirect to="/" />
+    }
     return (
       <LogInForm
-        onSubmit={this.processForm}
+        onSubmit={this.onSubmit}
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
