@@ -37,3 +37,21 @@ exports.getVehicle = async (id) => {
 
   return vehicle;
 }
+
+exports.createVehicle = async (vehicle) => {
+  let response;
+
+  try {
+    response = await fetch(ServerURL + 'car/add', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ vehicle })
+    });
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+
+  return response;
+}
