@@ -29,9 +29,10 @@ class LogInPage extends Component {
     let response = await UserAPI.login(this.state.user);
 
     if (response.status === 200) {
-      response = await JSON.stringify(response);
+      response = await response.json();
       User.set(response.user);
       Auth.authenticateUser(response.token);
+      this.props.onLoggedIn();
 
       this.setState({
         errors: {},
