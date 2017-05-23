@@ -4,7 +4,6 @@ import User from '../modules/User';
 
 class Navbar extends Component {
   render() {
-    console.log(this.props.authorized)
     if (this.props.authorized) {
       const user = User.get();
       return (

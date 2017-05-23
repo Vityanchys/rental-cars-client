@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import VehicleAddForm from '../components/VehicleAddForm';
-import { ServerMethodAddVehicle } from '../constants/Constants';
 import { Redirect } from 'react-router-dom';
 import VehiclesAPI from '../services/api/VehiclesAPI';
 
@@ -34,22 +33,22 @@ class VehicleAddPage extends Component {
     this.changeMaterialUIField = this.changeMaterialUIField.bind(this);
   }
 
-  onSubmit(event) {
+  async onSubmit(event) {
     event.preventDefault();
 
     const vehicle = this.state.vehicle;
 
-    const response = await VehiclesAPI.createVehicle(vehicle);
+    let response = await VehiclesAPI.createVehicle(vehicle);
 
     if (response.status === 200) {
-      response = await JSON.stringify(response);
+      response = await response.json();
       this.setState({
         errors: {},
         complete: true,
         id: response.id
       });
     } else {
-      response = await JSON.stringify(response);
+      response = response.json();
       const errors = response.errors ? response.errors : {};
       errors.summary = response.message;
 
