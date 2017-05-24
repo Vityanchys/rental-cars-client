@@ -43,7 +43,7 @@ class VehicleAddPage extends Component {
     this.changeVehicle = this.changeVehicle.bind(this);
     this.handleImageLoad = this.handleImageLoad.bind(this);
     this.changeMaterialUIField = this.changeMaterialUIField.bind(this);
-        this.handleRequestCloseSnackbar = this.handleRequestCloseSnackbar.bind(this);
+    this.handleRequestCloseSnackbar = this.handleRequestCloseSnackbar.bind(this);
     this.handleSnackbarMessage = this.handleSnackbarMessage.bind(this);
   }
 
@@ -75,7 +75,6 @@ class VehicleAddPage extends Component {
     let response = await VehiclesAPI.createVehicle(convertVehicle(vehicle));
 
     if (response.status === 200) {
-      response = await response.json();
       this.setState({
         errors: {},
         complete: true,
@@ -98,7 +97,7 @@ class VehicleAddPage extends Component {
     reader.readAsDataURL(file);
     reader.onload = () => {
       vehicle.image = reader.result;
-      this.setState({ vehicle, snackbar:true, snackbarMessage:"Изображение загружено" });
+      this.setState({ vehicle, snackbar: true, snackbarMessage: "Изображение загружено" });
     }
   }
 
