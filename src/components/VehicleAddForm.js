@@ -6,6 +6,7 @@ import { Card, TextField, RaisedButton, Divider, DatePicker, SelectField, MenuIt
 const VehicleAddForm = ({
   onSubmit,
   onChange,
+  handleImageLoad,
   onMaterialFieldChange, //?
   errors,
   vehicle
@@ -38,10 +39,10 @@ const VehicleAddForm = ({
             <TextField
               floatingLabelText="Марка"
               floatingLabelFixed={true}
-              name="brand"
-              errorText={errors.brand}
+              name="mark"
+              errorText={errors.mark}
               onChange={onChange}
-              value={vehicle.brand}
+              value={vehicle.mark}
             />
           </div>
 
@@ -76,11 +77,11 @@ const VehicleAddForm = ({
             <DatePicker
               floatingLabelText="Дата Т/О"
               floatingLabelFixed={true}
-              value={vehicle.maintenanceDate}
-              errorText={errors.maintenanceDate}
+              value={vehicle.lastTI}
+              errorText={errors.lastTI}
               onChange={
                 (empt, payload) => {
-                  let name = "maintenanceDate"
+                  let name = "lastTI"
                   onMaterialFieldChange(name, payload)
                 }}
             />
@@ -139,10 +140,10 @@ const VehicleAddForm = ({
             <TextField
               floatingLabelText="Пассажировместимость"
               floatingLabelFixed={true}
-              name="passengersCapacity"
-              errorText={errors.passengersCapacity}
+              name="capacity"
+              errorText={errors.capacity}
               onChange={onChange}
-              value={vehicle.passengersCapacity}
+              value={vehicle.capacity}
             />
           </div>
 
@@ -150,10 +151,10 @@ const VehicleAddForm = ({
             <TextField
               floatingLabelText="Грузоподъёмность"
               floatingLabelFixed={true}
-              name="loadCapacity"
-              errorText={errors.loadCapacity}
+              name="carryingCapacity"
+              errorText={errors.carryingCapacity}
               onChange={onChange}
-              value={vehicle.loadCapacity}
+              value={vehicle.carryingCapacity}
             />
           </div>
 
@@ -178,6 +179,29 @@ const VehicleAddForm = ({
               value={vehicle.pricePerHour}
             />
           </div>
+
+          <RaisedButton
+            label="Загрузить изображение"
+            labelPosition="before"
+            containerElement="label"
+          >
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageLoad}
+              style={{
+                cursor: 'pointer',
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                right: 0,
+                left: 0,
+                width: '100%',
+                opacity: 0
+              }} />
+
+          </RaisedButton>
         </div>
 
         <RaisedButton type="submit" label="Добавить" primary />

@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import VehicleAddForm from '../components/VehicleAddForm';
 import { Redirect } from 'react-router-dom';
 import VehiclesAPI from '../services/api/VehiclesAPI';
+import Validate from "../services/Validate";
+import { Snackbar } from 'material-ui';
 
+function convertVehicle(vehicle) {
+  let newVehicle = Object.assign({}, vehicle);
+  newVehicle.lastTI = newVehicle.lastTI.getTime();
+  return newVehicle;
+}
 
 class VehicleAddPage extends Component {
   constructor(props) {
@@ -12,25 +19,46 @@ class VehicleAddPage extends Component {
       errors: {},
       vehicle: {
         registrationNumber: '',
-        brand: '',
+        mark: '',
         model: '',
         year: '',
-        maintenanceDate: '',
+        lastTI: '',
         gearboxType: '',
         engineVolume: '',
         bodyType: '',
-        passengersCapacity: '',
-        loadCapacity: '',
-        vehicleType: '',
+        capacity: '',
+        carryingCapacity: '',
         pricePerDay: '',
-        pricePerHour: ''
+        pricePerHour: '',
+        type: 'null', //?
+        image: 'null', //will be fixed
+        status: 'null'
       },
-      complete: false
+      complete: false,
+      snackbar: false,
+      snackbarMessage: ""
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.changeVehicle = this.changeVehicle.bind(this);
+    this.handleImageLoad = this.handleImageLoad.bind(this);
     this.changeMaterialUIField = this.changeMaterialUIField.bind(this);
+        this.handleRequestCloseSnackbar = this.handleRequestCloseSnackbar.bind(this);
+    this.handleSnackbarMessage = this.handleSnackbarMessage.bind(this);
+  }
+
+  handleRequestCloseSnackbar() {
+    this.setState({
+      snackbar: false,
+      snackbarMessage: ""
+    });
+  };
+
+  handleSnackbarMessage(message) {
+    this.setState({
+      snackbar: true,
+      snackbarMessage: message
+    });
   }
 
   async onSubmit(event) {
@@ -38,14 +66,19 @@ class VehicleAddPage extends Component {
 
     const vehicle = this.state.vehicle;
 
-    let response = await VehiclesAPI.createVehicle(vehicle);
+    const checkResult = await Validate.checkVehicle(vehicle);
+    if (!checkResult.success) {
+      this.setState({ errors: checkResult.errors });
+      return;
+    }
+
+    let response = await VehiclesAPI.createVehicle(convertVehicle(vehicle));
 
     if (response.status === 200) {
       response = await response.json();
       this.setState({
         errors: {},
         complete: true,
-        id: response.id
       });
     } else {
       response = response.json();
@@ -55,6 +88,17 @@ class VehicleAddPage extends Component {
       this.setState({
         errors
       });
+    }
+  }
+
+  handleImageLoad(event) {
+    const file = event.target.files[0];
+    const vehicle = this.state.vehicle;
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      vehicle.image = reader.result;
+      this.setState({ vehicle, snackbar:true, snackbarMessage:"Изображение загружено" });
     }
   }
 
@@ -82,17 +126,26 @@ class VehicleAddPage extends Component {
   render() {
     if (this.state.complete) {
       return (
-        <Redirect to={'vehicles/' + this.state.id} />
+        <Redirect to='/' />
       );
     } else {
       return (
-        <VehicleAddForm
-          onSubmit={this.onSubmit}
-          onChange={this.changeVehicle}
-          onMaterialFieldChange={this.changeMaterialUIField} //?
-          errors={this.state.errors}
-          vehicle={this.state.vehicle}
-        />
+        <div>
+          <Snackbar
+            open={this.state.snackbar}
+            message={this.state.snackbarMessage}
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestCloseSnackbar}
+          />
+          <VehicleAddForm
+            onSubmit={this.onSubmit}
+            onChange={this.changeVehicle}
+            handleImageLoad={this.handleImageLoad}
+            onMaterialFieldChange={this.changeMaterialUIField} //?
+            errors={this.state.errors}
+            vehicle={this.state.vehicle}
+          />
+        </div>
       );
     }
   }
