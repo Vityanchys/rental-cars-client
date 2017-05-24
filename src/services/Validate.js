@@ -68,6 +68,104 @@ var constraints = {
   }
 };
 
+var constraintsVehicle = {
+  registrationNumber: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]{4} [a-zA-Zа-яёА-ЯЁ\\-]{2}-[0-9]",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+  mark: {
+    presence: {
+      message: "Поле не может быть пустым"
+    }
+  },
+  model: {
+    presence: {
+      message: "Поле не может быть пустым"
+    }
+  },
+  year: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]{4}",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+  lastTI: {
+    presence: {
+      message: "Поле не может быть пустым"
+    }
+  },
+  gearboxType: {
+    presence: {
+      message: "Поле не может быть пустым"
+    }
+  },
+  engineVolume: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]+",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+  bodyType: {
+    presence: {
+      message: "Поле не может быть пустым"
+    }
+  },
+  capacity: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]+",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+  carryingCapacity: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]+",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+  pricePerDay: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]+",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+  pricePerHour: {
+    presence: {
+      message: "Поле не может быть пустым"
+    },
+    format: {
+      pattern: "[0-9]+",
+      flags: "u",
+      message: "Ошибка формата"
+    }
+  },
+};
+
 function cutUnused(errors) {
   for (var field in errors) {
     errors[field] = errors[field][0];
@@ -83,6 +181,22 @@ exports.checkUser = async (user) => {
 
   if (result.errors) {
     result.errors.summary = 'Ошибка регистрации';
+    result.success = false;
+  } else {
+    result.success = true;
+  }
+
+  return result;
+}
+
+exports.checkVehicle = async (vehicle) => {
+  let result = {};
+
+  result.errors = validate(vehicle, constraintsVehicle, { fullMessages: false });
+  result.errors = cutUnused(result.errors);
+
+  if (result.errors) {
+    result.errors.summary = 'Ошибка добавления ТС';
     result.success = false;
   } else {
     result.success = true;
