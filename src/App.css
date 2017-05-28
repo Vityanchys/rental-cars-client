@@ -56,6 +56,15 @@
 .profile-left {
   float: left;
   font-size: large;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.searchP {
+  float: "left";
+  marginLeft: "50px";
+  marginTop: "20px";
+  position: "fixed";
 }
 
 .vehicle-card {

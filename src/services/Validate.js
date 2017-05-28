@@ -37,34 +37,6 @@ var constraints = {
       minimum: 8,
       message: "Пароль не может быть короче 8-ми символов"
     }
-  },
-  passportId: {
-    presence: {
-      message: "Поле не может быть пустым"
-    },
-    format: {
-      pattern: "[a-zA-Zа-яА-Я]{2}[0-9]{7}",
-      flags: "u",
-      message: "Ошибка формата"
-    }
-  },
-  phone: {
-    presence: {
-      message: "Поле не может быть пустым"
-    },
-    format: {
-      pattern: "[0-9]{7}",
-      message: "Ошибка формата"
-    }
-  },
-  phonePrefix: {
-    presence: {
-      message: "Ошибка"
-    },
-    format: {
-      pattern: "(33|29|44|25)",
-      message: "Ошибка"
-    }
   }
 };
 
