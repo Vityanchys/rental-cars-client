@@ -13,11 +13,9 @@ const ProfileForm = ({
         <div>Pasport id: {user.passportId}</div>
         <div>Phone: {user.phone}</div>
         <div className="btn">
-          <RaisedButton label="Редактировать" />
-        </div>
-      </div>
-      <div className="btn-right">
+        <RaisedButton label="Редактировать" />
         <RaisedButton label="Избранное" />
+      </div>
       </div>
     </Card>
   );
