@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import { Snackbar } from 'material-ui';
@@ -74,24 +74,40 @@ class App extends Component {
             />
             <Navbar authorized={this.state.authorized} />
             <Route exact path="/" component={HomePage} />
-            <Route path="/cars/:id/order" render={(props) => (
-              <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
-            )} />
+            <Switch>
+            {
+              User.get() &&
+              <div>
+                <Route path="/cars/:id/order" render={(props) => (
+                  <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
+                )} />
+                <Route path="/profile" component={ProfilePage} />
+                <Route path="/logout" render={() => (
+                  <div>
+                    {this.deauthenticate()}
+                    < Redirect to="/" />
+                  </div>
+                )} />
+                {
+                  User.get().admin && <Route path="/add" render={() => (
+                    <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+                  )} />
+                }
+              </div>
+            }
+
             <Route path="/car/cars/:id" component={VehicleRoute} />
             <Route path="/signup" component={SignUpPage} />
             <Route path="/login" render={() => (
               <LogInPage onLoggedIn={this.onLoggedIn} />
             )} />
-            <Route path="/add" render={() => (
-              <VehicleAddPage onMessage={this.handleSnackbarMessage} />
-            )} />
-            <Route path="/profile" component={ProfilePage} />
-            <Route path="/logout" render={() => (
-              <div>
-                {this.deauthenticate()}
-                < Redirect to="/" />
-              </div>
-            )} />
+
+            <Redirect from="/cars/:id/order" to="/login" />
+            <Redirect from="/profile" to="/login" />
+            <Redirect from="/logout" to="/login" />
+            <Redirect from="/add" to="/login" />
+            </Switch>
+
           </div>
         </Router>
       </MuiThemeProvider>
