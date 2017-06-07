@@ -73,41 +73,47 @@ class App extends Component {
               onRequestClose={this.handleRequestCloseSnackbar}
             />
             <Navbar authorized={this.state.authorized} />
-            <Route exact path="/" component={HomePage} />
             <Switch>
-            {
-              User.get() &&
-              <div>
-                <Route path="/cars/:id/order" render={(props) => (
-                  <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
-                )} />
-                <Route path="/profile" component={ProfilePage} />
-                <Route path="/logout" render={() => (
-                  <div>
-                    {this.deauthenticate()}
-                    < Redirect to="/" />
-                  </div>
-                )} />
-                {
-                  User.get().admin && <Route path="/add" render={() => (
-                    <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+              <Route exact path="/" component={HomePage} />
+              {
+                User.get() &&
+                <div>
+                  <Route path="/cars/:id/order" render={(props) => (
+                    <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
                   )} />
-                }
-              </div>
-            }
+                  <Route path="/profile" component={ProfilePage} />
+                  <Route path="/logout" render={() => (
+                    <div>
+                      {this.deauthenticate()}
+                      < Redirect to="/" />
+                    </div>
+                  )} />
+                  {
+                    User.get().admin && <Route path="/add" render={() => (
+                      <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+                    )} />
+                  }
+                </div>
+              }
 
-            <Route path="/car/cars/:id" component={VehicleRoute} />
-            <Route path="/signup" component={SignUpPage} />
-            <Route path="/login" render={() => (
-              <LogInPage onLoggedIn={this.onLoggedIn} />
-            )} />
+              <Route path="/car/cars/:id" component={VehicleRoute} />
+              <Route path="/signup" component={SignUpPage} />
+              <Route path="/login" render={() => (
+                <LogInPage onLoggedIn={this.onLoggedIn} />
+              )} />
 
-            <Redirect from="/cars/:id/order" to="/login" />
-            <Redirect from="/profile" to="/login" />
-            <Redirect from="/logout" to="/login" />
-            <Redirect from="/add" to="/login" />
+              <Redirect from="/cars/:id/order" to="/login" />
+              <Redirect from="/profile" to="/login" />
+              <Redirect from="/logout" to="/login" />
+              <Redirect from="/add" to="/login" />
+
+              <Route render={() => (
+                <h1>
+                  You broke the internet (404)
+              </h1>
+              )} />
+
             </Switch>
-
           </div>
         </Router>
       </MuiThemeProvider>
