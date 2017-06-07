@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import SignUpForm from '../components/SignUpForm.js';
 import { Redirect } from 'react-router-dom';
 import UserAPI from "../services/api/UserAPI";
@@ -44,7 +44,7 @@ class SignUpPage extends Component {
 
         const checkResult = await Validate.checkUser(user);
         if (!checkResult.success) {
-            this.setState({errors: checkResult.errors});
+            this.setState({ errors: checkResult.errors });
             return;
         }
 
@@ -56,6 +56,7 @@ class SignUpPage extends Component {
                 complete: true,
             });
         } else {
+            this.props.onMessage("Ошибка регистрации");
             let errors = {};
             response.json().then(json => {
                 errors.summary = json.errors;
@@ -69,6 +70,7 @@ class SignUpPage extends Component {
 
     render() {
         if (this.state.complete) {
+            this.props.onMessage("Регистрация завершена успешно");
             return <Redirect to="/login" />
         }
         return (

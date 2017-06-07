@@ -97,7 +97,9 @@ class App extends Component {
               }
 
               <Route path="/car/cars/:id" component={VehicleRoute} />
-              <Route path="/signup" component={SignUpPage} />
+              <Route path="/signup" render={() => (
+                <SignUpPage onMessage={this.handleSnackbarMessage} />
+              )} />
               <Route path="/login" render={() => (
                 <LogInPage onLoggedIn={this.onLoggedIn} />
               )} />
