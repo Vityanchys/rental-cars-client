@@ -3,7 +3,6 @@ import VehicleAddForm from '../components/VehicleAddForm';
 import { Redirect } from 'react-router-dom';
 import VehiclesAPI from '../services/api/VehiclesAPI';
 import Validate from "../services/Validate";
-import { Snackbar } from 'material-ui';
 
 function convertVehicle(vehicle) {
   let newVehicle = Object.assign({}, vehicle);
@@ -34,31 +33,13 @@ class VehicleAddPage extends Component {
         image: 'null', //will be fixed
         status: 'null'
       },
-      complete: false,
-      snackbar: false,
-      snackbarMessage: ""
+      complete: false
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.changeVehicle = this.changeVehicle.bind(this);
     this.handleImageLoad = this.handleImageLoad.bind(this);
     this.changeMaterialUIField = this.changeMaterialUIField.bind(this);
-    this.handleRequestCloseSnackbar = this.handleRequestCloseSnackbar.bind(this);
-    this.handleSnackbarMessage = this.handleSnackbarMessage.bind(this);
-  }
-
-  handleRequestCloseSnackbar() {
-    this.setState({
-      snackbar: false,
-      snackbarMessage: ""
-    });
-  };
-
-  handleSnackbarMessage(message) {
-    this.setState({
-      snackbar: true,
-      snackbarMessage: message
-    });
   }
 
   async onSubmit(event) {
@@ -97,7 +78,8 @@ class VehicleAddPage extends Component {
     reader.readAsDataURL(file);
     reader.onload = () => {
       vehicle.image = reader.result;
-      this.setState({ vehicle, snackbar: true, snackbarMessage: "Изображение загружено" });
+      this.setState({ vehicle });
+      this.props.onMessage("Изображение загружено");
     }
   }
 
@@ -130,12 +112,6 @@ class VehicleAddPage extends Component {
     } else {
       return (
         <div>
-          <Snackbar
-            open={this.state.snackbar}
-            message={this.state.snackbarMessage}
-            autoHideDuration={4000}
-            onRequestClose={this.handleRequestCloseSnackbar}
-          />
           <VehicleAddForm
             onSubmit={this.onSubmit}
             onChange={this.changeVehicle}
