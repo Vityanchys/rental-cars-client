@@ -74,8 +74,8 @@ class App extends Component {
             />
             <Navbar authorized={this.state.authorized} />
             <Route exact path="/" component={HomePage} />
-            <Route path="/cars/:id/order" render={() => (
-              <OrderPage onMessage={this.handleSnackbarMessage} />
+            <Route path="/cars/:id/order" render={(props) => (
+              <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
             )} />
             <Route path="/car/cars/:id" component={VehicleRoute} />
             <Route path="/signup" component={SignUpPage} />
