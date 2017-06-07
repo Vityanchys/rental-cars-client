@@ -13,6 +13,7 @@ import SignUpPage from './containers/SignUpPage';
 import LogInPage from './containers/LogInPage';
 import VehicleAddPage from './containers/VehicleAddPage';
 import ProfilePage from './containers/ProfilePage';
+import OrderPage from './containers/OrderPage';
 import User from './modules/User';
 import Auth from './modules/Auth';
 
@@ -50,6 +51,7 @@ class App extends Component {
           <div className="App">
             <Navbar authorized={this.state.authorized} />
             <Route exact path="/" component={HomePage} />
+            <Route path="/cars/:id/order" component={OrderPage} />
             <Route path="/car/cars/:id" component={VehicleRoute} />
             <Route path="/signup" component={SignUpPage} />
             <Route path="/login" render={() => (
