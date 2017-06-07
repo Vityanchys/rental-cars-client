@@ -13,7 +13,7 @@ function Vehicle(props) {
       </CardMedia>
       <CardActions>
         <FlatButton label="Подробнее" href={"car/cars/" + props.id} />
-        <FlatButton label="Заказать" />
+        <FlatButton label="Заказать" href={"cars/" + props.id + "/order"} />
       </CardActions>
     </Card>
   )
