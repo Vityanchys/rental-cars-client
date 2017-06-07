@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import { Snackbar } from 'material-ui';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -23,11 +24,27 @@ class App extends Component {
 
     const authorized = Auth.isUserAuthenticated();
     this.state = {
-      authorized
+      authorized,
+      snackbar: false,
+      snackbarMessage: ""
     }
 
     this.onLoggedIn = this.onLoggedIn.bind(this);
     this.deauthenticate = this.deauthenticate.bind(this);
+  }
+
+  handleRequestCloseSnackbar = () => {
+    this.setState({
+      snackbar: false,
+      snackbarMessage: ""
+    });
+  };
+
+  handleSnackbarMessage = (message) => {
+    this.setState({
+      snackbar: true,
+      snackbarMessage: message
+    });
   }
 
   onLoggedIn() {
@@ -49,15 +66,25 @@ class App extends Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router>
           <div className="App">
+            <Snackbar
+              open={this.state.snackbar}
+              message={this.state.snackbarMessage}
+              autoHideDuration={4000}
+              onRequestClose={this.handleRequestCloseSnackbar}
+            />
             <Navbar authorized={this.state.authorized} />
             <Route exact path="/" component={HomePage} />
-            <Route path="/cars/:id/order" component={OrderPage} />
+            <Route path="/cars/:id/order" render={() => (
+              <OrderPage onMessage={this.handleSnackbarMessage} />
+            )} />
             <Route path="/car/cars/:id" component={VehicleRoute} />
             <Route path="/signup" component={SignUpPage} />
             <Route path="/login" render={() => (
-                <LogInPage onLoggedIn={this.onLoggedIn} />
+              <LogInPage onLoggedIn={this.onLoggedIn} />
             )} />
-            <Route path="/add" component={VehicleAddPage} />
+            <Route path="/add" render={() => (
+              <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+            )} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/logout" render={() => (
               <div>
