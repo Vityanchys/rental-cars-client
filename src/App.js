@@ -78,26 +78,33 @@ class App extends Component {
               {
                 User.get() &&
                 <div>
-                  <Route path="/cars/:id/order" render={(props) => (
-                    <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
-                  )} />
-                  <Route path="/profile" component={ProfilePage} />
-                  <Route path="/logout" render={() => (
-                    <div>
-                      {this.deauthenticate()}
-                      < Redirect to="/" />
-                    </div>
-                  )} />
-                  {
-                    User.get().admin && <Route path="/add" render={() => (
-                      <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+                  <Switch>
+                    <Route path="/cars/:id/order" render={(props) => (
+                      <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
                     )} />
-                  }
+                    <Route path="/car/cars/:id" component={VehicleRoute} />
+                    <Route path="/profile" component={ProfilePage} />
+                    <Route path="/logout" render={() => (
+                      <div>
+                        {this.deauthenticate()}
+                        < Redirect to="/" />
+                      </div>
+                    )} />
+                    {
+                      User.get().admin && <Route path="/add" render={() => (
+                        <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+                      )} />
+                    }
+                    <Redirect from="/login" to="/" />
+                    <Redirect from="/signup" to="/" />
+                  </Switch>
                 </div>
               }
 
               <Route path="/car/cars/:id" component={VehicleRoute} />
-              <Route path="/signup" component={SignUpPage} />
+              <Route path="/signup" render={() => (
+                <SignUpPage onMessage={this.handleSnackbarMessage} />
+              )} />
               <Route path="/login" render={() => (
                 <LogInPage onLoggedIn={this.onLoggedIn} />
               )} />
