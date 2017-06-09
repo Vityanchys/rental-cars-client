@@ -33,24 +33,27 @@
   background-color: #eee;
 }
 
-.navbar {
-  margin: 20px;
-  padding: 20px;
+.navbar a {
+  text-decoration: none;
+  font-size: large;
+}
+
+.navbar-top {
+  display: block;
 }
 
 .navbar-left {
-  float: left;
+  display: none;
 }
 
-.navbar-right {
-  float: right;
-}
+@media screen and (max-width: 500px) {
+  .navbar-top {
+    display: none;
+  }
 
-.navbar a {
-  margin: 20px;
-  text-decoration: none;
-  font-size: large;
-  font-weight: bold;
+  .navbar-left {
+    display: block;
+  }
 }
 
 .profile-left {
