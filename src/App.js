@@ -74,7 +74,9 @@ class App extends Component {
             />
             <Navbar authorized={this.state.authorized} />
             <Switch>
-              <Route exact path="/" component={HomePage} />
+              <Route exact path="/" render={(props) => (
+                <HomePage {...props} onMessage={this.handleSnackbarMessage} />
+              )} />
               {
                 User.get() &&
                 <div>
