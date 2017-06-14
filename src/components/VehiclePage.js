@@ -1,12 +1,22 @@
 import React from "react";
 import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
+import {Card} from 'material-ui/Card';
+
 
 function VehiclePage(props) {
   return (
     <div>
-      <h1>Information about car</h1>
+      <Card className="vehicleInfo">
+      <h1>Информация о Т/С</h1>
+
+      <div className='imgVehicleTable'>
+        <img alt="img" src={props.image} width="100%"/>
+      </div>
+      <div className='vehicleTable'>
       <Table>
-        <TableBody>
+        <TableBody
+        displayRowCheckbox={false}
+        >
           <TableRow>
             <TableRowColumn>Mark:</TableRowColumn>
             <TableRowColumn>{props.mark}</TableRowColumn>
@@ -57,7 +67,8 @@ function VehiclePage(props) {
           </TableRow>
         </TableBody>
       </Table>
-      <img alt="img" src={props.image} width="60%" />
+      </div>
+    </Card>
     </div>
   )
 }

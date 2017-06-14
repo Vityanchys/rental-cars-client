@@ -1,20 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, RaisedButton } from 'material-ui';
+import {List, ListItem} from 'material-ui/List';
 
 
 const ProfileForm = ({
   user,
 }) => (
-    <Card className="container">
-      <h2 className="card-heading">Личный кабинет</h2>
-      <div className="profile-left">
-        <div>Name: {user.firstName} {user.lastName}</div>
-        <div>Email: {user.email}</div>
-        <div>Pasport id: {user.passportId}</div>
-        <div>Phone: {user.phone}</div>
+    <Card>
+    <div className="profile-left">
+      <h2>Личный кабинет</h2>
+      <div>
+        <h2> {user.firstName} {user.lastName}</h2>
+        <h3>Email:      {user.email}</h3>
+        <h3>Pasport id: {user.passportId}</h3>
+        <h3>Phone:      {user.phone}</h3>
         <div className="btn">
-        <RaisedButton label="Редактировать" />
+        <Link to='/editUserInformation'>
+          <RaisedButton label="Редактировать" />
+        </Link>
         <RaisedButton label="Избранное" />
+      </div>
       </div>
       </div>
     </Card>

@@ -27,10 +27,12 @@
 .btn {
   padding: 100px 0 0 0;
 }
-.vehicle {
-  margin: 20px;
-  padding: 20px;
-  background-color: #eee;
+
+.imgVehicleTable {
+  float: left;
+  width: 45%;
+  padding: 5px;
+  min-width: 280px;
 }
 
 .navbar a {
@@ -44,6 +46,7 @@
 
 .navbar-left {
   display: none;
+  position: absolute;
 }
 
 @media screen and (max-width: 500px) {
@@ -53,6 +56,8 @@
 
   .navbar-left {
     display: block;
+    position: absolute;
+    min-width: 600px;
   }
 }
 
@@ -63,12 +68,24 @@
   margin-left: 50px;
 }
 
-.searchP {
-  float: "left";
-  marginLeft: "50px";
-  marginTop: "20px";
-  position: "fixed";
+.vehicle {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eee;
 }
+
+.vehicleInfo {
+  position: absolute;
+  min-width: 600px;
+}
+
+.vehicleTable {
+  max-width: 50%;
+  padding: 5px;
+  float: right;
+  min-width: 280px;
+}
+
 
 .vehicle-card {
   max-width: 600px;

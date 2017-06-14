@@ -1,5 +1,6 @@
 import React from 'react';
 import VehiclePage from '../components/VehiclePage';
+import { CircularProgress } from 'material-ui';
 
 import VehiclesAPI from '../services/api/VehiclesAPI';
 
@@ -21,7 +22,7 @@ class VehicleRoute extends React.Component {
 
   render() {
     if (!this.state.loaded) {
-      return <div>Not loaded</div>;
+      return         <CircularProgress />
     }
 
     return <VehiclePage
