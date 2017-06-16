@@ -1,4 +1,5 @@
 import { ServerURL } from '../../constants/Constants';
+import Auth from '../../modules/Auth';
 
 exports.register = async (user) => {
   const response = await fetch(ServerURL + 'user/register', {
@@ -15,6 +16,27 @@ exports.register = async (user) => {
       passportId: user.passportId,
       admin: false,
       phone: "+375" + user.phonePrefix + user.phone,
+    })
+  })
+  return response;
+}
+
+exports.edit = async (user) => {
+  const response = await fetch(ServerURL + 'user/edit', {
+    method: 'PUT',
+    headers: {
+      'x-auth-token': Auth.getToken(),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      passportId: user.passportId,
+      phone: user.phone,
+      email: user.email,
+      admin: false,
+      password: user.password
     })
   })
   return response;

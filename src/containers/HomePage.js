@@ -134,12 +134,44 @@ const SearchPanel = ({
         //
       }
 
+
       {
-        //Год
+        //Цена за час
       }
       <br />
       <div style={{ float: "left" }}>
-      Минимальная цена за день
+      Цена за час
+      <br />
+        <TextField
+          floatingLabelText="От"
+          value={currentSearchParams.minPricePerHour || ""}
+          hintText={searchParams.minPricePerHour}
+          style={{ width: "130px" }}
+          onChange={(event) => {
+            onSearchPanelChange("minPricePerHour", event.target.value);
+          }}
+        />
+        <TextField
+        floatingLabelText="До"
+          value={currentSearchParams.maxPricePerHour || ""}
+          hintText={searchParams.maxPricePerHour}
+          style={{ width: "130px" }}
+          onChange={(event) => {
+            onSearchPanelChange("maxPricePerHour", event.target.value);
+          }}
+        />
+      </div>
+
+      {
+        //
+      }
+
+      {
+        //Цена за день
+      }
+      <br />
+      <div style={{ float: "left" }}>
+      Цена за день
       <br />
         <TextField
           floatingLabelText="От"
@@ -164,6 +196,7 @@ const SearchPanel = ({
       {
         //
       }
+
 
       {
         // Тип КПП
@@ -213,6 +246,8 @@ class HomePage extends Component {
         bodyType: null,
         minPricePerDay: null,
         maxPricePerDay: null,
+        minPricePerHour: null,
+        maxPricePerHour: null,
         type: null
       },
       searchParams: {}, //Все возможные критерии поиска
@@ -265,13 +300,25 @@ class HomePage extends Component {
       }
 
       if (params.minPricePerDay) {
-        if (vehicle.PricePerDay < params.minPricePerDay) {
+        if (vehicle.pricePerDay < params.minPricePerDay) {
           return;
         }
       }
 
       if (params.maxPricePerDay) {
-        if (vehicle.PricePerDay > params.maxPricePerDay) {
+        if (vehicle.pricePerDay > params.maxPricePerDay) {
+          return;
+        }
+      }
+
+      if (params.minPricePerHour) {
+        if (vehicle.pricePerHour < params.minPricePerHour) {
+          return;
+        }
+      }
+
+      if (params.maxPricePerHour) {
+        if (vehicle.pricePerHour > params.maxPricePerHour) {
           return;
         }
       }
@@ -297,8 +344,10 @@ class HomePage extends Component {
       maxYear: 0,
       gearboxTypes: [],
       bodyTypes : [],
-      minPricePerDay: 0,
+      minPricePerDay: vehicles[0].pricePerDay,
       maxPricePerDay: 0,
+      minPricePerHour: vehicles[0].pricePerHour,
+      maxPricePerHour: 0,
       types: []
     };
 
@@ -320,12 +369,19 @@ class HomePage extends Component {
       if (searchParams.bodyTypes.indexOf(vehicle.bodyType) === -1) {
           searchParams.bodyTypes.push(vehicle.bodyType);
       }
-      if (vehicle.PricePerDay > searchParams.maxPricePerDay) {
-        searchParams.maxPricePerDay = vehicle.PricePerDay;
+      if (vehicle.pricePerDay > searchParams.maxPricePerDay) {
+        searchParams.maxPricePerDay = vehicle.pricePerDay;
       }
 
-      if (vehicle.PricePerDay < searchParams.minPricePerDay) {
-        searchParams.minPricePerDay = vehicle.PricePerDay;
+      if (vehicle.pricePerDay < searchParams.minPricePerDay) {
+        searchParams.minPricePerDay = vehicle.pricePerDay;
+      }
+      if (vehicle.pricePerHour > searchParams.maxPricePerHour) {
+        searchParams.maxPricePerHour = vehicle.pricePerHour;
+      }
+
+      if (vehicle.pricePerHour < searchParams.minPricePerHour) {
+        searchParams.minPricePerHour = vehicle.pricePerHour;
       }
       if (searchParams.types.indexOf(vehicle.type) === -1) {
         searchParams.types.push(vehicle.type);

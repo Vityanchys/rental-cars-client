@@ -1,4 +1,5 @@
 import { ServerURL } from '../../constants/Constants';
+import Auth from '../../modules/Auth';
 
 function handeResponse(response) {
   if (response.status !== 200) {
@@ -40,11 +41,12 @@ exports.getVehicle = async (id) => {
 
 exports.createVehicle = async (vehicle) => {
   let response;
-  
+
   try {
     response = await fetch(ServerURL + 'car/add', {
       method: "POST",
       headers: {
+        'x-auth-token': Auth.getToken(),
         "Content-Type": "application/json"
       },
       body: JSON.stringify(vehicle)

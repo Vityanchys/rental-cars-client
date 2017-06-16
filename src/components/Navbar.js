@@ -10,7 +10,7 @@ import {
 
 const TopNavbar = ({ user }) => {
   return (
-    <div>
+    <div className='navbar-top'>
       <div style={{ float: "left" }}>
         <Link to="/">
           <FlatButton label="Главная" labelStyle={{ color: "white" }} />
@@ -49,7 +49,7 @@ const TopNavbar = ({ user }) => {
 
 const LeftNavbar = ({ user, onTouchTap }) => {
   return (
-    <div>
+    <div className='navbar-left'>
       <Link to={"/"}>
         <MenuItem primaryText="Главная" onTouchTap={onTouchTap} leftIcon={<ActionHome />} />
       </Link>

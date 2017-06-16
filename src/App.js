@@ -15,6 +15,7 @@ import LogInPage from './containers/LogInPage';
 import VehicleAddPage from './containers/VehicleAddPage';
 import ProfilePage from './containers/ProfilePage';
 import OrderPage from './containers/OrderPage';
+import EditProfileRoute from './containers/EditProfileRoute';
 import User from './modules/User';
 import Auth from './modules/Auth';
 
@@ -86,6 +87,7 @@ class App extends Component {
                     )} />
                     <Route path="/car/cars/:id" component={VehicleRoute} />
                     <Route path="/profile" component={ProfilePage} />
+                    <Route path='/editUserInformation' component={EditProfileRoute} />
                     <Route path="/logout" render={() => (
                       <div>
                         {this.deauthenticate()}
@@ -113,6 +115,7 @@ class App extends Component {
 
               <Redirect from="/cars/:id/order" to="/login" />
               <Redirect from="/profile" to="/login" />
+              <Redirect from="/editUserInformation" to="/login" />
               <Redirect from="/logout" to="/login" />
               <Redirect from="/add" to="/login" />
 

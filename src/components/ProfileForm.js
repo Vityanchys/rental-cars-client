@@ -8,8 +8,8 @@ const ProfileForm = ({
   user,
 }) => (
     <Card>
-    <div className="profile-left">
-      <h2>Личный кабинет</h2>
+    <div className="profile">
+      <h1>Личный кабинет</h1>
       <div>
         <h2> {user.firstName} {user.lastName}</h2>
         <h3>Email:      {user.email}</h3>
