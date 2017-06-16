@@ -31,9 +31,17 @@ class EditProfileRoute extends Component {
   //@param {object} event - the JavaScript event object
   async onSubmit(event) {
       event.preventDefault();
-      console.log('submit');
+
       const user = this.state.user;
-      console.log(user);
+      if (user.password === ''){
+        user.password = null;
+      }
+      const checkResult = await Validate.checkUser(user);
+      if (!checkResult.success) {
+          this.setState({ errors: checkResult.errors });
+          return;
+      }
+
       try{
         let response = await UserAPI.edit(user);
         console.log('RESPONSE', response);

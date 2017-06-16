@@ -39,6 +39,23 @@ exports.getVehicle = async (id) => {
   return vehicle;
 }
 
+exports.deleteVehicle = async (id) => {
+  let response;
+
+  try {
+    response = await fetch(ServerURL + 'car/delete/' + id , {
+      method: "DELETE",
+      headers: {
+        'x-auth-token': Auth.getToken(),
+        "Content-Type": "application/json"
+      },
+      body: {}
+    });
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+}
+
 exports.createVehicle = async (vehicle) => {
   let response;
 

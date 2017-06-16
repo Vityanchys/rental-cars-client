@@ -1,41 +1,11 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-
+import OrderForm from '../components/OrderForm';
 import User from '../modules/User';
 import OrderAPI from "../services/api/OrderAPI";
 
 //
-import { Card, DatePicker, RaisedButton } from 'material-ui';
-
-const OrderForm = ({
-  orderDateTime,
-  returnDateTime,
-  onChange,
-  onSubmit
- }) => {
-  return (
-    <div style={{ padding: "20px" }}>
-      <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }} >
-        <DatePicker
-          floatingLabelText="Дата заказа"
-          value={orderDateTime}
-          onChange={(event, date) => {
-            onChange("orderDateTime", date);
-          }}
-        />
-        <DatePicker
-          floatingLabelText="Дата возврата"
-          value={returnDateTime}
-          onChange={(event, date) => {
-            onChange("returnDateTime", date);
-          }}
-        />
-      </div>
-      <RaisedButton label="Заказать" onClick={onSubmit} />
-    </div>
-  )
-}
-//
+import { Card } from 'material-ui';
 
 class OrderPage extends React.Component {
   constructor(props) {

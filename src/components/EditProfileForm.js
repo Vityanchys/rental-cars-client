@@ -24,7 +24,6 @@ class EditProfileForm extends Component {
 
           <Paper zDepth={2}>
             <TextField
-              hintText="First name"
               style={style}
               onChange={onChange}
               name="firstName"
@@ -35,7 +34,6 @@ class EditProfileForm extends Component {
             />
             <Divider />
             <TextField
-              hintText="Last name"
               name="lastName"
               floatingLabelText="Фамилия"
               onChange={onChange}
@@ -46,7 +44,6 @@ class EditProfileForm extends Component {
             />
             <Divider />
             <TextField
-              hintText="Phone number"
               name="phone"
               floatingLabelText="Номер телефона"
               style={style}
@@ -56,7 +53,6 @@ class EditProfileForm extends Component {
               defaultValue={user.phone}/>
             <Divider />
             <TextField
-              hintText="Pasport ID"
               name="passportId"
               floatingLabelText="Номер паспорта"
               style={style}
@@ -66,7 +62,6 @@ class EditProfileForm extends Component {
               defaultValue={user.passportId}/>
             <Divider />
             <TextField
-              hintText="Password"
               floatingLabelText="Пароль"
               name="password"
               style={style}

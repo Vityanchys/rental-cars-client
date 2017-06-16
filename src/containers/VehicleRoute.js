@@ -8,6 +8,8 @@ class VehicleRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loaded: false };
+
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -20,25 +22,23 @@ class VehicleRoute extends React.Component {
       });
   }
 
+  async onSubmit(event) {
+    event.preventDefault();
+    console.log('submit');
+
+    let response = await VehiclesAPI.delete(this.state.vehicle.id);
+
+    console.log(response);
+
+  }
+
   render() {
     if (!this.state.loaded) {
       return         <CircularProgress />
     }
 
     return <VehiclePage
-      image={this.state.vehicle.image}
-      mark={this.state.vehicle.mark}
-      model={this.state.vehicle.model}
-      year={this.state.vehicle.year}
-      gearboxType={this.state.vehicle.gearboxType}
-      engineVolume={this.state.vehicle.engineVolume}
-      bodyType={this.state.vehicle.bodyType}
-      capacity={this.state.vehicle.capacity}
-      carryingCapacity={this.state.vehicle.carryingCapacity}
-      pricePerHour={this.state.vehicle.pricePerHour}
-      pricePerDay={this.state.vehicle.pricePerDay}
-      type={this.state.vehicle.type}
-      status={this.state.vehicle.status}
+      vehicle={this.state.vehicle}
       id={this.state.vehicle.id} />;
   }
 }
