@@ -87,7 +87,9 @@ class App extends Component {
                     <Route path="/cars/:id/order" render={(props) => (
                       <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
                     )} />
-                    <Route path="/cars/:id" component={VehicleRoute} />
+                    <Route path="/cars/:id" render={(props) => (
+                      <VehicleRoute {...props} onMessage={this.handleSnackbarMessage} />
+                    )} />
                     <Route path="/profile" component={ProfilePage} />
                     <Route path='/users' component={UsersRoute} />
                     <Route path='/editUserInformation' render={(props) => (
