@@ -20,13 +20,14 @@ const TopNavbar = ({ user }) => {
         {user ?
           <div>
             {user.admin &&
-              <Link to="/add">
-                <FlatButton label="Добавить Т/С" labelStyle={{ color: "white" }} />
-              </Link>
-              &&
-              <Link to="/user/users">
-                <FlatButton label="Пользователи" labelStyle={{ color: "white" }} />
-              </Link>
+              <span>
+                <Link to="/add">
+                  <FlatButton label="Добавить Т/С" labelStyle={{ color: "white" }} />
+                </Link>
+                <Link to="/user/users">
+                  <FlatButton label="Пользователи" labelStyle={{ color: "white" }} />
+                </Link>
+              </span>
             }
             <Link to="/profile">
               <FlatButton label={user.firstName} labelStyle={{ color: "white" }} />
@@ -61,9 +62,14 @@ const LeftNavbar = ({ user, onTouchTap }) => {
       {user ?
         <div>
           {user.admin &&
-            <Link to="/add">
-              <MenuItem primaryText="Добавить Т/С" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
-            </Link>
+            <div>
+              <Link to="/add">
+                <MenuItem primaryText="Добавить Т/С" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
+              </Link>
+              <Link to="/user/users">
+                <MenuItem primaryText="Пользователи" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
+              </Link>
+            </div>
           }
           <Link to="/profile">
             <MenuItem primaryText={user.firstName} onTouchTap={onTouchTap} leftIcon={<ActionAccountBox />} />
