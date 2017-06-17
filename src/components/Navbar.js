@@ -24,7 +24,7 @@ const TopNavbar = ({ user }) => {
                 <Link to="/add">
                   <FlatButton label="Добавить Т/С" labelStyle={{ color: "white" }} />
                 </Link>
-                <Link to="/user/users">
+                <Link to="/users">
                   <FlatButton label="Пользователи" labelStyle={{ color: "white" }} />
                 </Link>
               </span>
@@ -66,7 +66,7 @@ const LeftNavbar = ({ user, onTouchTap }) => {
               <Link to="/add">
                 <MenuItem primaryText="Добавить Т/С" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
               </Link>
-              <Link to="/user/users">
+              <Link to="/users">
                 <MenuItem primaryText="Пользователи" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
               </Link>
             </div>
