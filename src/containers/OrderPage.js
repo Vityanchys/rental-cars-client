@@ -85,6 +85,11 @@ class OrderPage extends React.Component {
   };
 
   handleSubmit = async () => {
+    if (!this.state.orderDateTime || !this.state.returnDateTime) {
+      this.props.onMessage("Ошибка. Не выбрана дата.")
+      return;
+    }
+
     const order = {
       orderDateTime: new Date(this.state.orderDateTime).getTime(),
       returnDateTime: new Date(this.state.returnDateTime).getTime(),
