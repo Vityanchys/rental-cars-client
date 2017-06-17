@@ -1,6 +1,11 @@
+import defaultAvatar from '../images/avatar.png';
+
 class User {
 
   static set(user) {
+    if (!user.avatar) {
+      user.avatar = defaultAvatar;
+    }
     localStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -9,7 +14,7 @@ class User {
   }
 
   static update(user) {
-    if(this.get()){
+    if (this.get()) {
       this.remove();
     }
     this.set(user);
@@ -19,7 +24,7 @@ class User {
     localStorage.removeItem('user');
   }
 
-  static put(user){
+  static put(user) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 }

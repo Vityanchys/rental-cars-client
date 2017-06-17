@@ -81,33 +81,31 @@ class App extends Component {
               )} />
               {
                 user &&
-                <div>
-                  <Switch>
-                    <Route path="/cars/:id/order" render={(props) => (
-                      <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
+                <Switch>
+                  <Route path="/cars/:id/order" render={(props) => (
+                    <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
+                  )} />
+                  <Route path="/car/cars/:id" component={VehicleRoute} />
+                  <Route path="/user/users/:id" component={UserRoute} />
+                  <Route path="/profile" component={ProfilePage} />
+                  <Route path='/user/users' component={UsersRoute} />
+                  <Route path='/editUserInformation' render={(props) => (
+                    <EditProfileRoute {...props} onUserUpdate={this.handleUserUpdate} />
+                  )} />
+                  <Route path="/logout" render={() => (
+                    <div>
+                      {this.deauthenticate()}
+                      < Redirect to="/" />
+                    </div>
+                  )} />
+                  {
+                    user.admin && <Route path="/add" render={() => (
+                      <VehicleAddPage onMessage={this.handleSnackbarMessage} />
                     )} />
-                    <Route path="/car/cars/:id" component={VehicleRoute} />
-                    <Route path="/user/users/:id" component={UserRoute} />
-                    <Route path="/profile" component={ProfilePage} />
-                    <Route path='/user/users' component={UsersRoute} />
-                    <Route path='/editUserInformation' render={(props) => (
-                      <EditProfileRoute {...props} onUserUpdate={this.handleUserUpdate} />
-                    )} />
-                    <Route path="/logout" render={() => (
-                      <div>
-                        {this.deauthenticate()}
-                        < Redirect to="/" />
-                      </div>
-                    )} />
-                    {
-                      user.admin && <Route path="/add" render={() => (
-                        <VehicleAddPage onMessage={this.handleSnackbarMessage} />
-                      )} />
-                    }
-                    <Redirect from="/login" to="/" />
-                    <Redirect from="/signup" to="/" />
-                  </Switch>
-                </div>
+                  }
+                  <Redirect from="/login" to="/" />
+                  <Redirect from="/signup" to="/" />
+                </Switch>
               }
 
               <Route path="/car/cars/:id" component={VehicleRoute} />
