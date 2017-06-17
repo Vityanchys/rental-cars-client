@@ -54,6 +54,8 @@ exports.deleteVehicle = async (id) => {
   } catch (err) {
     console.log('Fetch Error :-S', err);
   }
+
+  return response;
 }
 
 exports.createVehicle = async (vehicle) => {

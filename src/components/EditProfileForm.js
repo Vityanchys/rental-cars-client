@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Card, CardText, RaisedButton, TextField } from 'material-ui';
+import { Card, RaisedButton, TextField } from 'material-ui';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
-import {List, ListItem} from 'material-ui/List';
 
 const style = {
   marginLeft: 20,
@@ -18,8 +16,8 @@ class EditProfileForm extends Component {
     const user = this.props.user;
 
     return (
-    <Card>
-          <div className='editProfile'>
+      <Card>
+        <div className='editProfile'>
           <h2> Изменение пользовательской информации</h2>
 
           <Paper zDepth={2}>
@@ -50,7 +48,7 @@ class EditProfileForm extends Component {
               onChange={onChange}
               underlineShow={false}
               errorText={errors.phone}
-              defaultValue={user.phone}/>
+              defaultValue={user.phone} />
             <Divider />
             <TextField
               name="passportId"
@@ -59,7 +57,7 @@ class EditProfileForm extends Component {
               onChange={onChange}
               underlineShow={false}
               errorText={errors.passportId}
-              defaultValue={user.passportId}/>
+              defaultValue={user.passportId} />
             <Divider />
             <TextField
               floatingLabelText="Пароль"
@@ -68,7 +66,7 @@ class EditProfileForm extends Component {
               onChange={onChange}
               underlineShow={false}
               errorText={errors.password}
-              defaultValue={user.password}/>
+              defaultValue={user.password} />
             <Divider />
           </Paper>
           <div>
@@ -76,8 +74,8 @@ class EditProfileForm extends Component {
             <RaisedButton type="submit" label="Изменить" onClick={onSubmit} primary />
           </div>
         </div>
-    </Card>
-  );
+      </Card>
+    );
   }
 }
 

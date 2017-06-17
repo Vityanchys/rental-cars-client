@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, DatePicker, RaisedButton } from 'material-ui';
+import { DatePicker, RaisedButton } from 'material-ui';
 
 const OrderForm = ({
   orderDateTime,
