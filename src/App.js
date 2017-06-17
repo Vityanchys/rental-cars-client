@@ -25,15 +25,11 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    const authorized = Auth.isUserAuthenticated();
     this.state = {
-      authorized,
+      user: User.get(),
       snackbar: false,
       snackbarMessage: ""
     }
-
-    this.onLoggedIn = this.onLoggedIn.bind(this);
-    this.deauthenticate = this.deauthenticate.bind(this);
   }
 
   handleRequestCloseSnackbar = () => {
@@ -50,21 +46,24 @@ class App extends Component {
     });
   }
 
-  onLoggedIn() {
+  handleUserUpdate = () => {
     this.setState({
-      authorized: true
+      user: User.get()
     })
   }
 
-  deauthenticate() {
+  onLoggedIn = () => {
+    this.handleUserUpdate();
+  }
+
+  deauthenticate = () => {
     Auth.deauthenticateUser()
     User.remove();
-    this.setState({
-      authorized: false
-    });
+    this.handleUserUpdate();
   }
 
   render() {
+    const user = this.state.user;
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router>
@@ -75,13 +74,13 @@ class App extends Component {
               autoHideDuration={4000}
               onRequestClose={this.handleRequestCloseSnackbar}
             />
-            <Navbar authorized={this.state.authorized} />
+            <Navbar user={user} />
             <Switch>
               <Route exact path="/" render={(props) => (
                 <HomePage {...props} onMessage={this.handleSnackbarMessage} />
               )} />
               {
-                User.get() &&
+                user &&
                 <div>
                   <Switch>
                     <Route path="/cars/:id/order" render={(props) => (
@@ -91,7 +90,9 @@ class App extends Component {
                     <Route path="/user/users/:id" component={UserRoute} />
                     <Route path="/profile" component={ProfilePage} />
                     <Route path='/user/users' component={UsersRoute} />
-                    <Route path='/editUserInformation' component={EditProfileRoute} />
+                    <Route path='/editUserInformation' render={(props) => (
+                      <EditProfileRoute {...props} onUserUpdate={this.handleUserUpdate} />
+                    )} />
                     <Route path="/logout" render={() => (
                       <div>
                         {this.deauthenticate()}
@@ -99,7 +100,7 @@ class App extends Component {
                       </div>
                     )} />
                     {
-                      User.get().admin && <Route path="/add" render={() => (
+                      user.admin && <Route path="/add" render={() => (
                         <VehicleAddPage onMessage={this.handleSnackbarMessage} />
                       )} />
                     }
