@@ -12,7 +12,7 @@ function Vehicle(props) {
         <img alt="img" src={props.image} width="50%" />
       </CardMedia>
       <CardActions>
-        <FlatButton label="Подробнее" href={"car/cars/" + props.id} />
+        <FlatButton label="Подробнее" href={"cars/" + props.id} />
         <FlatButton label="Заказать" href={"cars/" + props.id + "/order"} />
       </CardActions>
     </Card>

@@ -11,7 +11,7 @@ const OrderForm = ({
   onSubmit
  }) => {
   return (
-    <Card className="vehicle-card-order">
+    <Card className="card-vehicle-order">
       <CardHeader
         title={user.lastName + " " + user.firstName}
         subtitle={user.passportId}

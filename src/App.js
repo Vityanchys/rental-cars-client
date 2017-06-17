@@ -87,10 +87,11 @@ class App extends Component {
                     <Route path="/cars/:id/order" render={(props) => (
                       <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
                     )} />
-                    <Route path="/car/cars/:id" component={VehicleRoute} />
-                    <Route path="/user/users/:id" component={UserRoute} />
+                    <Route path="/cars/:id" render={(props) => (
+                      <VehicleRoute {...props} onMessage={this.handleSnackbarMessage} />
+                    )} />
                     <Route path="/profile" component={ProfilePage} />
-                    <Route path='/user/users' component={UsersRoute} />
+                    <Route path='/users' component={UsersRoute} />
                     <Route path='/editUserInformation' render={(props) => (
                       <EditProfileRoute {...props} onUserUpdate={this.handleUserUpdate} />
                     )} />
@@ -101,16 +102,20 @@ class App extends Component {
                       </div>
                     )} />
                     {
-                      user.admin && <Route path="/add" render={() => (
-                        <VehicleAddPage onMessage={this.handleSnackbarMessage} />
-                      )} />
+                      user.admin &&
+                      <div>
+                        <Route path="/add" render={() => (
+                          <VehicleAddPage onMessage={this.handleSnackbarMessage} />
+                        )} />
+                        <Route path="/admin/users/:id" component={UserRoute} />
+                      </div>
                     }
                     <Redirect from="/login" to="/" />
                     <Redirect from="/signup" to="/" />
                   </Switch>
                 }
 
-                <Route path="/car/cars/:id" component={VehicleRoute} />
+                <Route path="/cars/:id" component={VehicleRoute} />
                 <Route path="/signup" render={() => (
                   <SignUpPage onMessage={this.handleSnackbarMessage} />
                 )} />

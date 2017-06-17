@@ -11,7 +11,7 @@ function UsersPage(props) {
       >
       </CardMedia>
       <CardActions>
-        <FlatButton label="Подробнее" href={"users/" + props.id} />
+        <FlatButton label="Подробнее" href={"admin/users/" + props.id} />
       </CardActions>
     </Card>
   )
