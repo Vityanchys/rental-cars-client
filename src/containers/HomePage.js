@@ -191,7 +191,7 @@ class HomePage extends Component {
     if (this.state.loaded) {
       this.scrollUp();
       return (
-        <div className='homePage'>
+        <div>
           <SearchPanel
             currentSearchParams={this.state.currentSearchParams}
             searchParams={this.state.searchParams}
