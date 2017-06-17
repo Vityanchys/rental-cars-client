@@ -71,6 +71,12 @@
   }
 }
 
+.usersList {
+  padding: 20px;
+  margin: 50px;
+  position: relative;
+}
+
 .profile {
   float: left;
   font-size: large;

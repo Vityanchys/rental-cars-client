@@ -9,7 +9,6 @@ class VehicleRoute extends React.Component {
     super(props);
     this.state = { loaded: false };
 
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -22,13 +21,13 @@ class VehicleRoute extends React.Component {
       });
   }
 
-  async onSubmit(event) {
+    handleDeleteCar = async (event) => {
     event.preventDefault();
-    console.log('submit');
+    console.log('onDelete');
 
-    let response = await VehiclesAPI.delete(this.state.vehicle.id);
+    let response = await VehiclesAPI.deleteVehicle(this.state.vehicle.id);
 
-    console.log(response);
+    console.log('sdfasf', response);
 
   }
 
@@ -39,6 +38,7 @@ class VehicleRoute extends React.Component {
 
     return <VehiclePage
       vehicle={this.state.vehicle}
+      onDelete={this.handleDeleteCar}
       id={this.state.vehicle.id} />;
   }
 }

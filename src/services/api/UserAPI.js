@@ -1,5 +1,57 @@
 import { ServerURL } from '../../constants/Constants';
 import Auth from '../../modules/Auth';
+import User from '../../modules/User';
+
+function handeResponse(response) {
+  if(response.status !== 200) {
+    throw new Error('Looks like there was a problem. Status Code: ' +
+      response.status);
+  }
+
+  // Examine the text in the response
+  return response.json().then(data => {
+    return data;
+  });
+}
+
+exports.getAllUsers = async () => {
+  let users;
+
+  try {
+    const response = await fetch(ServerURL + 'user/users', {
+      method: 'GET',
+      headers: {
+        'x-auth-token': Auth.getToken()
+      },
+      body: {}
+    });
+    users = response.json();
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+  console.log(users);
+  return users;
+}
+
+exports.getUser = async (id) => {
+  let user;
+
+  try {
+    const response = await fetch(ServerURL + '/user/users/' + id, {
+      method: "GET",
+      headers: {
+        'x-auth-token': Auth.getToken()
+      },
+      body: {}
+    }
+  );
+    user = await handeResponse(response);
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+
+  return user;
+}
 
 exports.register = async (user) => {
   const response = await fetch(ServerURL + 'user/register', {

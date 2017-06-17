@@ -11,14 +11,13 @@ const VehiclePage = ({
   vehicle,
   errors,
   id,
-  onSubmit
+  onDelete,
 }) => (
 
       <Card className="vehicleInfo">
-      <form action='/' onSubmit={onSubmit}>
       <h1>Информация о Т/С</h1>
       <RaisedButton
-        type='submit'
+        onClick={onDelete}
         label="Удалить Т/С"
         secondary={true}
         style={{float: 'right'}}
@@ -83,10 +82,6 @@ const VehiclePage = ({
         </TableBody>
       </Table>
       </div>
-      <div>
-
-      </div>
-      </form>
     </Card>
 );
 

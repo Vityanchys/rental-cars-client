@@ -16,6 +16,8 @@ import VehicleAddPage from './containers/VehicleAddPage';
 import ProfilePage from './containers/ProfilePage';
 import OrderPage from './containers/OrderPage';
 import EditProfileRoute from './containers/EditProfileRoute';
+import UserRoute from './containers/UserRoute';
+import UsersRoute from './containers/UsersRoute';
 import User from './modules/User';
 import Auth from './modules/Auth';
 
@@ -86,7 +88,9 @@ class App extends Component {
                       <OrderPage {...props} onMessage={this.handleSnackbarMessage} />
                     )} />
                     <Route path="/car/cars/:id" component={VehicleRoute} />
+                    <Route path="/user/users/:id" component={UserRoute} />
                     <Route path="/profile" component={ProfilePage} />
+                    <Route path='/user/users' component={UsersRoute} />
                     <Route path='/editUserInformation' component={EditProfileRoute} />
                     <Route path="/logout" render={() => (
                       <div>

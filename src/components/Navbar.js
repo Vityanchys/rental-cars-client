@@ -24,6 +24,10 @@ const TopNavbar = ({ user }) => {
               <Link to="/add">
                 <FlatButton label="Добавить Т/С" labelStyle={{ color: "white" }} />
               </Link>
+              &&
+              <Link to="/user/users">
+                <FlatButton label="Пользователи" labelStyle={{ color: "white" }} />
+              </Link>
             }
             <Link to="/profile">
               <FlatButton label={user.firstName} labelStyle={{ color: "white" }} />
