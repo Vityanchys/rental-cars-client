@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import User from '../modules/User';
 import { AppBar, IconButton, MenuItem, Drawer, Divider, FlatButton } from 'material-ui';
 import {
   ActionAccountBox, ActionHome, ActionInput,
@@ -92,7 +91,7 @@ class Navbar extends Component {
     super(props);
 
     this.state = {
-      drawerOpen: false
+      drawerOpen: false,
     };
   }
 
@@ -101,7 +100,7 @@ class Navbar extends Component {
   handleDrawerClose = () => this.setState({ drawerOpen: false });
 
   render() {
-    const user = User.get();
+    const user = this.props.user;
     return (
       <div className="navbar">
         <div className="navbar-top">

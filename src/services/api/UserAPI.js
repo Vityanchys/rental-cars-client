@@ -1,6 +1,5 @@
 import { ServerURL } from '../../constants/Constants';
 import Auth from '../../modules/Auth';
-import User from '../../modules/User';
 
 function handeResponse(response) {
   if(response.status !== 200) {

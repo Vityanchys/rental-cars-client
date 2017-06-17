@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
+html, body, #root { height: 100%; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -120,4 +125,18 @@
 .vehicles {
     text-align: center;
     display: inline-block;
+}
+
+.vehicle-card-order {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.content {
+ flex: 1 0 auto;
+}
+.footer {
+  flex: 0 0 auto;
 }

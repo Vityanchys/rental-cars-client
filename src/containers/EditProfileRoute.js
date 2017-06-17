@@ -19,51 +19,53 @@ class EditProfileRoute extends Component {
   }
 
   onChange(event) {
-      const field = event.target.name;
-      const user = this.state.user;
-      user[field] = event.target.value;
+    const field = event.target.name;
+    const user = this.state.user;
+    user[field] = event.target.value;
 
-      this.setState({
-          user
-      });
+    this.setState({
+      user
+    });
   }
 
   //@param {object} event - the JavaScript event object
   async onSubmit(event) {
-      event.preventDefault();
+    event.preventDefault();
 
-      const user = this.state.user;
-      if (user.password === ''){
-        user.password = null;
+    const user = this.state.user;
+    if (user.password === '') {
+      user.password = null;
+    }
+    const checkResult = await Validate.checkUser(user);
+    if (!checkResult.success) {
+      this.setState({ errors: checkResult.errors });
+      return;
+    }
+
+    try {
+      let response = await UserAPI.edit(user);
+      console.log('RESPONSE', response);
+      console.log('User', User.get());
+      if (response.status === 200) {
+        this.setState({
+          errors: {},
+          user: user,
+          complete: true,
+        });
+        User.update(user);
+        this.props.onUserUpdate();
+      } else {
+        this.props.onMessage("Ошибка изменения");
+        let errors = {};
+        response.json().then(json => {
+          errors.summary = json.errors;
+
+          this.setState({
+            errors: errors
+          });
+        });
       }
-      const checkResult = await Validate.checkUser(user);
-      if (!checkResult.success) {
-          this.setState({ errors: checkResult.errors });
-          return;
-      }
-
-      try{
-        let response = await UserAPI.edit(user);
-        console.log('RESPONSE', response);
-        console.log('User', User.get());
-        if (response.status === 200) {
-            this.setState({
-                errors: {},
-                user: user,
-                complete: true,
-            });
-        } else {
-            this.props.onMessage("Ошибка изменения");
-            let errors = {};
-            response.json().then(json => {
-                errors.summary = json.errors;
-
-                this.setState({
-                    errors: errors
-                });
-            });
-        }
-      } catch(err) {
+    } catch (err) {
       console.log('Error: ', err);
     }
   }
