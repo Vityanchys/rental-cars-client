@@ -53,7 +53,7 @@ class App extends Component {
     })
   }
 
-  onLoggedIn = () => {
+  handleLogIn = () => {
     this.handleUserUpdate();
   }
 
@@ -120,7 +120,7 @@ class App extends Component {
                   <SignUpPage onMessage={this.handleSnackbarMessage} />
                 )} />
                 <Route path="/login" render={() => (
-                  <LogInPage onLoggedIn={this.onLoggedIn} />
+                  <LogInPage onLoggedIn={this.handleLogIn} />
                 )} />
 
                 <Redirect from="/cars/:id/order" to="/login" />

@@ -32,12 +32,13 @@ class LogInPage extends Component {
       response = await response.json();
       User.set(response.user);
       Auth.authenticateUser(response.token);
-      this.props.onLoggedIn();
-
+      
       this.setState({
         errors: {},
         authorized: true
       });
+
+      this.props.onLoggedIn();
     } else {
       response = await JSON.stringify(response);
       const errors = response.errors ? response.errors : {};
