@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-import { AppBar, FlatButton } from 'material-ui';
+import { React, Component }  from 'react';
 import { Link } from 'react-router-dom';
+import { Card, RaisedButton } from 'material-ui';
+import { AppBar, FlatButton } from 'material-ui';
 
-class Footer extends Component {
+
+
+class AboutCompanyPage extends Component {
   render() {
     return (
       <AppBar
@@ -11,7 +14,8 @@ class Footer extends Component {
           <div style={{ fontSize: "small" }}>
             <div style={{ float: 'left'}}>
             <Link to="/aboutUs">
-              <FlatButton label="О компании"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
+              <FlatButton label="
+"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
             </Link>
             </div>
             <div>
@@ -20,8 +24,8 @@ class Footer extends Component {
           </div>
         }
       ></AppBar>
-    );
+  );
   }
 }
 
-export default Footer;
+export default AboutCompanyPage;

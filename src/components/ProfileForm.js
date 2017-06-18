@@ -13,6 +13,7 @@ const ProfileForm = ({
           <h3>Email:      {user.email}</h3>
           <h3>Pasport id: {user.passportId}</h3>
           <h3>Phone:      {user.phone}</h3>
+          <img alt="img" src={user.image} width="50%" />
           <div className="btn">
             <Link to='/editUserInformation'>
               <RaisedButton label="Редактировать" />

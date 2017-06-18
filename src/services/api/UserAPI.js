@@ -93,6 +93,24 @@ exports.edit = async (user) => {
   return response;
 }
 
+exports.deleteUser = async (id) => {
+  let response;
+
+  try {
+    response = await fetch(ServerURL + 'user/delete/' + id, {
+      method: 'DELETE',
+      headers: {
+        'x-auth-token': Auth.getToken(),
+        "Content-Type": "application/json"
+      },
+      body: {}
+    });
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+  return response;
+}
+
 exports.login = async (user) => {
   let response;
 

@@ -14,6 +14,7 @@ function Users(props) {
           email={user.email}
           phone={user.phone}
           passportId={user.passportId}
+          admin={user.admin}
           id={user.id}
         />
       })}

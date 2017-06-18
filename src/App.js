@@ -19,6 +19,7 @@ import OrderPage from './containers/OrderPage';
 import EditProfileRoute from './containers/EditProfileRoute';
 import UserRoute from './containers/UserRoute';
 import UsersRoute from './containers/UsersRoute';
+import AboutCompanyPage from './components/AboutCompanyPage';
 import User from './modules/User';
 import Auth from './modules/Auth';
 
@@ -81,6 +82,7 @@ class App extends Component {
                 <Route exact path="/" render={(props) => (
                   <HomePage {...props} onMessage={this.handleSnackbarMessage} />
                 )} />
+                <Route path='/aboutUs' component={AboutCompanyPage} />
                 {
                   user &&
                   <Switch>
