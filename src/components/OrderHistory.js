@@ -9,9 +9,9 @@ function OrderHistory(props) {
             <Table>
                 <TableHeader displaySelectAll={false}>
                     <TableRow>
-                        <TableHeaderColumn>Order date</TableHeaderColumn>
-                        <TableHeaderColumn>Return date</TableHeaderColumn>
-                        <TableHeaderColumn>Order status</TableHeaderColumn>
+                        <TableHeaderColumn>Дата начала заказа</TableHeaderColumn>
+                        <TableHeaderColumn>Дата окончания заказа</TableHeaderColumn>
+                        <TableHeaderColumn>Статус заказа</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
