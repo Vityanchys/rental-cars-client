@@ -3,7 +3,6 @@ import InputMask from 'react-input-mask';
 import { SelectField, MenuItem, IconButton, TextField } from 'material-ui';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { red500 } from 'material-ui/styles/colors';
-import '../App.css';
 
 const SearchPanel = ({
   currentSearchParams,
