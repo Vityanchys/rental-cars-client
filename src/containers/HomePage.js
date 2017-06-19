@@ -39,7 +39,6 @@ class HomePage extends Component {
 
       dimensions: {
         width: -1,
-        height: -1
       }
     }
     this.onChangePage = this.onChangePage.bind(this);
@@ -203,7 +202,7 @@ class HomePage extends Component {
   handleSearchPanelDesktopTogle = () => this.setState({ searchPanelDesktopOpen: !this.state.searchPanelDesktopOpen });
 
   render() {
-    const { width, height } = this.state.dimensions
+    const { width } = this.state.dimensions
     let searchPanel =
       <SearchPanel
         currentSearchParams={this.state.currentSearchParams}
