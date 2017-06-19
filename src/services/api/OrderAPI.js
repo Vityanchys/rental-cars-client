@@ -13,3 +13,17 @@ exports.add = async (order) => {
   })
   return response;
 }
+
+exports.getHistory = async (id) => {
+    let history;
+    const response = await fetch(ServerURL + 'order/history/' + id, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'x-auth-token': Auth.getToken()
+        },
+        body: {}
+    })
+    history = response.json();
+    return history;
+}
