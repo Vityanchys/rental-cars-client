@@ -8,17 +8,49 @@ class Footer extends Component {
       <AppBar
         showMenuIconButton={false}
         title={
-          <div style={{ fontSize: "small" }}>
-            <div style={{ float: 'left'}}>
-            <Link to="/aboutUs">
-              <FlatButton label="О компании"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
-            </Link>
-            <Link to="/contacts">
-              <FlatButton label="Контакты"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
-            </Link>
+          <div>
+            <div className="item-desktop">
+              <div style={{
+                fontSize: "small",
+                display: "flex",
+                justifyContent: "center"
+              }}>
+
+                <div style={{
+                  order: "-1",
+                  position: "absolute",
+                  top: "0",
+                  left: "24px"
+                }}>
+                  <Link to="/aboutUs">
+                    <FlatButton label="О компании" labelStyle={{ color: "white", fontSize: 'small' }} />
+                  </Link>
+                  <Link to="/contacts">
+                    <FlatButton label="Контакты" labelStyle={{ color: "white", fontSize: 'small' }} />
+                  </Link>
+                </div>
+
+                <div style={{
+                  justifyContent: "space-around",
+                }}>
+                  © 2017
+                </div>
+              </div>
             </div>
-            <div>
-              © 2017
+
+            <div className="item-mobile">
+              <div style={{ float: "left" }}>
+                <Link to="/aboutUs">
+                  <FlatButton label="О компании" labelStyle={{ color: "white", fontSize: 'small' }} />
+                </Link>
+                <Link to="/contacts">
+                  <FlatButton label="Контакты" labelStyle={{ color: "white", fontSize: 'small' }} />
+                </Link>
+              </div>
+
+              <div style={{ float: "right", fontSize: "small" }}>
+                © 2017
+              </div>
             </div>
           </div>
         }
