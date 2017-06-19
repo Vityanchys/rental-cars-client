@@ -204,7 +204,6 @@ class HomePage extends Component {
 
   render() {
     const { width, height } = this.state.dimensions
-    console.log(width)
     let searchPanel =
       <SearchPanel
         currentSearchParams={this.state.currentSearchParams}

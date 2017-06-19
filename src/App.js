@@ -121,6 +121,12 @@ class App extends Component {
                   </Switch>
                 }
 
+                <Redirect from="/cars/:id/order" to="/login" />
+                <Redirect from="/profile" to="/login" />
+                <Redirect from="/editUserInformation" to="/login" />
+                <Redirect from="/logout" to="/login" />
+                <Redirect from="/add" to="/login" />
+
                 <Route path="/cars/:id" component={VehicleRoute} />
                 <Route path="/signup" render={() => (
                   <SignUpPage onMessage={this.handleSnackbarMessage} />
@@ -128,12 +134,6 @@ class App extends Component {
                 <Route path="/login" render={() => (
                   <LogInPage onLoggedIn={this.handleLogIn} />
                 )} />
-
-                <Redirect from="/cars/:id/order" to="/login" />
-                <Redirect from="/profile" to="/login" />
-                <Redirect from="/editUserInformation" to="/login" />
-                <Redirect from="/logout" to="/login" />
-                <Redirect from="/add" to="/login" />
 
                 <Route render={() => (
                   <h1>
