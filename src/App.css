@@ -78,6 +78,24 @@ html, body, #root { height: 100%; }
   }
 }
 
+.item-desktop {
+  display: block;
+}
+
+.item-mobile  {
+  display: none;
+}
+
+@media screen and (max-width: 650px) {
+  .item-desktop  {
+    display: none;
+  }
+
+  .item-mobile {
+    display: block;
+  }
+}
+
 .usersList {
   padding: 20px;
   margin: 50px;
