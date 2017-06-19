@@ -4,7 +4,7 @@ import User from '../modules/User';
 import UserAPI from "../services/api/UserAPI";
 import ValidateProfile from "../services/ProfileEditValidate";
 
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class EditProfileRoute extends Component {
   constructor(props) {
@@ -40,6 +40,7 @@ class EditProfileRoute extends Component {
     }
     const checkResult = await ValidateProfile.checkUser(user);
     if (!checkResult.success) {
+      this.props.onMessage("Ошибка изменения");
       this.setState({ errors: checkResult.errors });
       return;
     }
@@ -74,6 +75,7 @@ class EditProfileRoute extends Component {
 
   render() {
     if (this.state.complete) {
+      this.props.onMessage("Профиль обновлён успешно.")
       return <Redirect to="/profile" />
     }
     return (

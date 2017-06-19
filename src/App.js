@@ -98,7 +98,7 @@ class App extends Component {
                     <Route path="/profile" component={ProfilePage} />
                     <Route path='/users' component={UsersRoute} />
                     <Route path='/editUserInformation' render={(props) => (
-                      <EditProfileRoute {...props} onUserUpdate={this.handleUserUpdate} />
+                      <EditProfileRoute {...props} onMessage={this.handleSnackbarMessage} onUserUpdate={this.handleUserUpdate} />
                     )} />
                     <Route path='/getOrderHistory/:id' component={OrderHistoryRoute} />
                     <Route path="/logout" render={() => (
