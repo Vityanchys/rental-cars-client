@@ -3,199 +3,7 @@ import Vehicles from '../components/Vehicles';
 import { CircularProgress } from 'material-ui';
 import VehiclesAPI from '../services/api/VehiclesAPI';
 import Pagination from 'material-ui-pagination';
-
-//
-import { SelectField, MenuItem, IconButton, TextField } from 'material-ui';
-import ClearIcon from 'material-ui/svg-icons/content/clear';
-import { red500 } from 'material-ui/styles/colors';
-
-const SearchPanel = ({
-  currentSearchParams,
-  searchParams,
-  onSearchPanelChange
-}) => (
-    <div style={{ float: "left", marginLeft: "50px", marginTop: "20px", position: "fixed" }}>
-
-      {
-        //Марка
-      }
-      <SelectField
-        floatingLabelText="Марка"
-        floatingLabelFixed={true}
-        value={currentSearchParams.mark}
-        onChange={
-          (event, key, payload) => {
-            onSearchPanelChange("mark", payload);
-          }} >
-        {
-          searchParams.marks.map(mark => {
-            return <MenuItem key={mark} value={mark} primaryText={mark} />
-          })
-        }
-      </SelectField>
-      <IconButton
-        onClick={() => { onSearchPanelChange("mark", null) }}
-      >
-        <ClearIcon
-          hoverColor={red500}
-        />
-      </IconButton>
-
-      {
-        //
-      }
-
-      {
-        //Год
-      }
-      <br />
-      <div style={{ float: "left" }}>
-        <TextField
-          value={currentSearchParams.minYear || ""}
-          hintText={searchParams.minYear}
-          style={{ width: "130px" }}
-          onChange={(event) => {
-            onSearchPanelChange("minYear", event.target.value);
-          }}
-        />
-        <TextField
-          value={currentSearchParams.maxYear || ""}
-          hintText={searchParams.maxYear}
-          style={{ width: "130px" }}
-          onChange={(event) => {
-            onSearchPanelChange("maxYear", event.target.value);
-          }}
-        />
-      </div>
-      {
-        //
-      }
-
-      {
-        // Тип КПП
-      }
-      <br />
-      <div style={{ float: 'left' }}>
-      <SelectField
-        floatingLabelText="Тип КПП"
-        floatingLabelFixed={true}
-        value={currentSearchParams.gearboxType}
-        onChange={
-          (event, key, payload) => {
-            onSearchPanelChange("gearboxType", payload);
-          }} >
-        {
-          searchParams.gearboxTypes.map(gearboxType => {
-            return <MenuItem key={gearboxType} value={gearboxType} primaryText={gearboxType} />
-          })
-        }
-        </SelectField>
-        <IconButton
-          onClick={() => { onSearchPanelChange("gearboxType", null) }}
-        >
-          <ClearIcon
-            hoverColor={red500}
-          />
-        </IconButton>
-      </div>
-      {
-        //
-      }
-
-      {
-        // Тип КПП
-      }
-      <br />
-      <div style={{ float: 'left' }}>
-      <SelectField
-        floatingLabelText="Тип Кузова"
-        floatingLabelFixed={true}
-          value={currentSearchParams.bodyType}
-        onChange={
-          (event, key, payload) => {
-            onSearchPanelChange("bodyType", payload);
-          }} >
-        {
-          searchParams.bodyTypes.map(bodyType => {
-            return <MenuItem key={bodyType} value={bodyType} primaryText={bodyType} />
-          })
-        }
-        </SelectField>
-        <IconButton
-          onClick={() => { onSearchPanelChange("bodyType", null) }}
-        >
-          <ClearIcon
-            hoverColor={red500}
-          />
-        </IconButton>
-      </div>
-
-      {
-        //
-      }
-
-      {
-        //Год
-      }
-      <br />
-      <div style={{ float: "left" }}>
-      Минимальная цена за день
-      <br />
-        <TextField
-          floatingLabelText="От"
-          value={currentSearchParams.minPricePerDay || ""}
-          hintText={searchParams.minPricePerDay}
-          style={{ width: "130px" }}
-          onChange={(event) => {
-            onSearchPanelChange("minPricePerDay", event.target.value);
-          }}
-        />
-        <TextField
-        floatingLabelText="До"
-          value={currentSearchParams.maxPricePerDay || ""}
-          hintText={searchParams.maxPricePerDay}
-          style={{ width: "130px" }}
-          onChange={(event) => {
-            onSearchPanelChange("maxPricePerDay", event.target.value);
-          }}
-        />
-      </div>
-
-      {
-        //
-      }
-
-      {
-        // Тип КПП
-      }
-      <br />
-      <div style={{ float: 'left' }}>
-      <SelectField
-        floatingLabelText="Тип Т/С"
-        floatingLabelFixed={true}
-        value={currentSearchParams.type}
-        onChange={
-          (event, key, payload) => {
-            onSearchPanelChange("type", payload);
-          }} >
-        {
-          searchParams.types.map(type => {
-            return <MenuItem key={type} value={type} primaryText={type} />
-          })
-        }
-        </SelectField>
-        <IconButton
-          onClick={() => { onSearchPanelChange("type", null) }}
-        >
-          <ClearIcon
-            hoverColor={red500}
-          />
-        </IconButton>
-      </div>
-
-    </div>
-  )
-//
+import SearchPanel from '../components/SearchPanel'
 
 class HomePage extends Component {
   constructor(props) {
@@ -213,6 +21,8 @@ class HomePage extends Component {
         bodyType: null,
         minPricePerDay: null,
         maxPricePerDay: null,
+        minPricePerHour: null,
+        maxPricePerHour: null,
         type: null
       },
       searchParams: {}, //Все возможные критерии поиска
@@ -265,13 +75,25 @@ class HomePage extends Component {
       }
 
       if (params.minPricePerDay) {
-        if (vehicle.PricePerDay < params.minPricePerDay) {
+        if (vehicle.pricePerDay < params.minPricePerDay) {
           return;
         }
       }
 
       if (params.maxPricePerDay) {
-        if (vehicle.PricePerDay > params.maxPricePerDay) {
+        if (vehicle.pricePerDay > params.maxPricePerDay) {
+          return;
+        }
+      }
+
+      if (params.minPricePerHour) {
+        if (vehicle.pricePerHour < params.minPricePerHour) {
+          return;
+        }
+      }
+
+      if (params.maxPricePerHour) {
+        if (vehicle.pricePerHour > params.maxPricePerHour) {
           return;
         }
       }
@@ -297,8 +119,10 @@ class HomePage extends Component {
       maxYear: 0,
       gearboxTypes: [],
       bodyTypes : [],
-      minPricePerDay: 0,
+      minPricePerDay: vehicles[0].pricePerDay,
       maxPricePerDay: 0,
+      minPricePerHour: vehicles[0].pricePerHour,
+      maxPricePerHour: 0,
       types: []
     };
 
@@ -320,12 +144,19 @@ class HomePage extends Component {
       if (searchParams.bodyTypes.indexOf(vehicle.bodyType) === -1) {
           searchParams.bodyTypes.push(vehicle.bodyType);
       }
-      if (vehicle.PricePerDay > searchParams.maxPricePerDay) {
-        searchParams.maxPricePerDay = vehicle.PricePerDay;
+      if (vehicle.pricePerDay > searchParams.maxPricePerDay) {
+        searchParams.maxPricePerDay = vehicle.pricePerDay;
       }
 
-      if (vehicle.PricePerDay < searchParams.minPricePerDay) {
-        searchParams.minPricePerDay = vehicle.PricePerDay;
+      if (vehicle.pricePerDay < searchParams.minPricePerDay) {
+        searchParams.minPricePerDay = vehicle.pricePerDay;
+      }
+      if (vehicle.pricePerHour > searchParams.maxPricePerHour) {
+        searchParams.maxPricePerHour = vehicle.pricePerHour;
+      }
+
+      if (vehicle.pricePerHour < searchParams.minPricePerHour) {
+        searchParams.minPricePerHour = vehicle.pricePerHour;
       }
       if (searchParams.types.indexOf(vehicle.type) === -1) {
         searchParams.types.push(vehicle.type);

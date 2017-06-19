@@ -17,7 +17,8 @@ class SignUpPage extends Component {
                 password: '',
                 passportId: '',
                 phone: '',
-                phonePrefix: ''
+                phonePrefix: '',
+                image: 'null'
             },
             complete: false
         };
@@ -34,6 +35,18 @@ class SignUpPage extends Component {
         this.setState({
             user
         });
+    }
+
+    handleImageLoad(event) {
+      const file = event.target.files[0];
+      const user = this.state.user;
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        user.image = reader.result;
+        this.setState({ user });
+        this.props.onMessage("Изображение загружено");
+      }
     }
 
     //@param {object} event - the JavaScript event object
@@ -77,6 +90,7 @@ class SignUpPage extends Component {
             <SignUpForm
                 onSubmit={this.onSubmit}
                 onChange={this.onChange}
+                handleImageLoad={this.handleImageLoad}
                 errors={this.state.errors}
                 user={this.state.user}
             />

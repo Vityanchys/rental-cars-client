@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import User from '../modules/User';
 import { AppBar, IconButton, MenuItem, Drawer, Divider, FlatButton } from 'material-ui';
 import {
   ActionAccountBox, ActionHome, ActionInput,
@@ -10,7 +9,7 @@ import {
 
 const TopNavbar = ({ user }) => {
   return (
-    <div>
+    <div className='navbar-top'>
       <div style={{ float: "left" }}>
         <Link to="/">
           <FlatButton label="Главная" labelStyle={{ color: "white" }} />
@@ -21,9 +20,14 @@ const TopNavbar = ({ user }) => {
         {user ?
           <div>
             {user.admin &&
-              <Link to="/add">
-                <FlatButton label="Добавить Т/С" labelStyle={{ color: "white" }} />
-              </Link>
+              <span>
+                <Link to="/add">
+                  <FlatButton label="Добавить Т/С" labelStyle={{ color: "white" }} />
+                </Link>
+                <Link to="/users">
+                  <FlatButton label="Пользователи" labelStyle={{ color: "white" }} />
+                </Link>
+              </span>
             }
             <Link to="/profile">
               <FlatButton label={user.firstName} labelStyle={{ color: "white" }} />
@@ -49,7 +53,7 @@ const TopNavbar = ({ user }) => {
 
 const LeftNavbar = ({ user, onTouchTap }) => {
   return (
-    <div>
+    <div className='navbar-left'>
       <Link to={"/"}>
         <MenuItem primaryText="Главная" onTouchTap={onTouchTap} leftIcon={<ActionHome />} />
       </Link>
@@ -58,9 +62,14 @@ const LeftNavbar = ({ user, onTouchTap }) => {
       {user ?
         <div>
           {user.admin &&
-            <Link to="/add">
-              <MenuItem primaryText="Добавить Т/С" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
-            </Link>
+            <div>
+              <Link to="/add">
+                <MenuItem primaryText="Добавить Т/С" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
+              </Link>
+              <Link to="/users">
+                <MenuItem primaryText="Пользователи" onTouchTap={onTouchTap} leftIcon={<ContentAddCircle />} />
+              </Link>
+            </div>
           }
           <Link to="/profile">
             <MenuItem primaryText={user.firstName} onTouchTap={onTouchTap} leftIcon={<ActionAccountBox />} />
@@ -88,7 +97,7 @@ class Navbar extends Component {
     super(props);
 
     this.state = {
-      drawerOpen: false
+      drawerOpen: false,
     };
   }
 
@@ -97,7 +106,7 @@ class Navbar extends Component {
   handleDrawerClose = () => this.setState({ drawerOpen: false });
 
   render() {
-    const user = User.get();
+    const user = this.props.user;
     return (
       <div className="navbar">
         <div className="navbar-top">

@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
+html, body, #root { height: 100%; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -24,16 +29,31 @@
   to { transform: rotate(360deg); }
 }
 
+.aboutContent {
+  margin: 0 200px;
+  text-align: center;
+
+}
+
 .btn {
   padding: 100px 0 0 0;
 }
 
-.imgVehicleTable {
+.contacts {
   float: left;
-  width: 45%;
-  padding: 5px;
-  min-width: 280px;
+  text-align: left;
+  margin-left: 50px;
+  font-size: large;
 }
+
+.editProfile {
+  float: left;
+  padding: 20px;
+  width: 350px;
+  min-width: 400px;
+  text-align: left;
+}
+
 
 .navbar a {
   text-decoration: none;
@@ -46,26 +66,38 @@
 
 .navbar-left {
   display: none;
-  position: absolute;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 650px) {
   .navbar-top {
     display: none;
   }
 
   .navbar-left {
     display: block;
-    position: absolute;
-    min-width: 600px;
   }
 }
 
-.profile-left {
+.usersList {
+  padding: 20px;
+  margin: 50px;
+  position: relative;
+}
+
+.profile {
   float: left;
   font-size: large;
   text-align: left;
   margin-left: 50px;
+  min-width: 290px;
+}
+
+.searchPanel {
+  float: left;
+  margin-left: 50px;
+  margin-top: 20px;
+  min-width: 250px;
+  position: fixed;
 }
 
 .vehicle {
@@ -73,19 +105,6 @@
   padding: 20px;
   background-color: #eee;
 }
-
-.vehicleInfo {
-  position: absolute;
-  min-width: 600px;
-}
-
-.vehicleTable {
-  max-width: 50%;
-  padding: 5px;
-  float: right;
-  min-width: 280px;
-}
-
 
 .vehicle-card {
   max-width: 600px;
@@ -95,4 +114,22 @@
 .vehicles {
     text-align: center;
     display: inline-block;
+}
+
+.card-vehicle-order {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-vehicle-page {
+  margin: 20px auto;
+}
+
+.content {
+ flex: 1 0 auto;
+}
+.footer {
+  flex: 0 0 auto;
 }

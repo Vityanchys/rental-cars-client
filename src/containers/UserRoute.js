@@ -1,11 +1,13 @@
 import React from 'react';
+import UserPage from '../components/UserPage';
+import { CircularProgress } from 'material-ui';
+import { Dialog, FlatButton } from 'material-ui';
 import { Redirect } from 'react-router-dom';
-import VehiclePage from '../components/VehiclePage';
-import { CircularProgress, Dialog, FlatButton } from 'material-ui';
 
-import VehiclesAPI from '../services/api/VehiclesAPI';
 
-class VehicleRoute extends React.Component {
+import UserAPI from '../services/api/UserAPI';
+
+class UserRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loaded: false, openDeleteDialog: false };
@@ -13,33 +15,32 @@ class VehicleRoute extends React.Component {
   }
 
   componentDidMount() {
-    VehiclesAPI.getVehicle(this.props.match.params.id).then(
-      vehicle => {
+    UserAPI.getUser(this.props.match.params.id).then(
+      user => {
         this.setState({
           loaded: true,
-          vehicle: vehicle,
+          user: user,
           deleted: false
         });
+        console.log(this.state.user);
+
       });
   }
 
-  handleDeleteCar = () => {
-    this.setState({ openDeleteDialog: true })
-
-    //let response = await VehiclesAPI.deleteVehicle(this.state.vehicle.id);
+  handleDeleteUser = () => {
+    this.setState({ openDeleteDialog: true})
   }
 
-  deleteCar = async () => {
+  deleteUser = async () => {
     this.setState({ openDeleteDialog: false });
-    let response = await VehiclesAPI.deleteVehicle(this.state.vehicle.id);
+    let response = await UserAPI.deleteUser(this.state.user.id);
     if (response.status === 200) {
-      this.setState({ deleted: true, });
-      this.props.onMessage("Транспортное средство успешно удалено.");
+      this.setState({ deleted: true });
+      this.props.onMessage('Пользователь успешно удалён.');
     } else {
-      this.props.onMessage("Ошибка удаления.");
+      this.props.onMessage('Ошибка удаления.');
     }
   }
-
 
   handleOpen = () => {
     this.setState({ openDeleteDialog: true });
@@ -71,7 +72,7 @@ class VehicleRoute extends React.Component {
               <FlatButton
                 label="Удалить"
                 primary={true}
-                onTouchTap={this.deleteCar}
+                onTouchTap={this.deleteUser}
               />
             </div>
           }
@@ -79,15 +80,15 @@ class VehicleRoute extends React.Component {
           open={this.state.openDeleteDialog}
           onRequestClose={this.handleClose}
         >
-          Действительно удалить данное транспортное средство?
+          Действительно удалить данного пользователя?
         </Dialog>
-        <VehiclePage
-          vehicle={this.state.vehicle}
-          onDelete={this.handleDeleteCar}
-          id={this.state.vehicle.id} />;
-      </div >
+        <UserPage
+          user={this.state.user}
+          onDelete={this.handleDeleteUser}
+          />
+      </div>
     )
   }
 }
 
-export default VehicleRoute;
+export default UserRoute;
