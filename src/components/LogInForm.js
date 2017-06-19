@@ -13,7 +13,7 @@ const LogInForm = ({
 }) => (
     <Card className="container">
       <form action="/" onSubmit={onSubmit}>
-        <h2 className="card-heading">Логин</h2>
+        <h2 className="card-heading">Введите адрес эл. почты и пароль:</h2>
 
         {errors.summary && <p className="error-message">{errors.summary}</p>}
 

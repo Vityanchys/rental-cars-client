@@ -3,7 +3,7 @@ import InputMask from 'react-input-mask';
 import { SelectField, MenuItem, IconButton, TextField } from 'material-ui';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { red500 } from 'material-ui/styles/colors';
-
+import '../App.css';
 
 const SearchPanel = ({
   currentSearchParams,
@@ -17,7 +17,7 @@ const SearchPanel = ({
       }
       <SelectField
         floatingLabelText="Марка"
-        floatingLabelFixed={true}
+        floatingLabelFixed={false}
         value={currentSearchParams.mark}
         onChange={
           (event, key, payload) => {
@@ -84,10 +84,10 @@ const SearchPanel = ({
         // Тип КПП
       }
       <br />
-      <div style={{ float: 'left' }}>
+      <div className='searchPanelSelect' style={{ float: 'left' }}>
       <SelectField
         floatingLabelText="Тип КПП"
-        floatingLabelFixed={true}
+        floatingLabelFixed={false}
         value={currentSearchParams.gearboxType}
         onChange={
           (event, key, payload) => {
@@ -112,13 +112,13 @@ const SearchPanel = ({
       }
 
       {
-        // Тип КПП
+        // Тип Кузова
       }
       <br />
-      <div style={{ float: 'left' }}>
+      <div className='searchPanelSelect' style={{ float: 'left' }}>
       <SelectField
         floatingLabelText="Тип Кузова"
-        floatingLabelFixed={true}
+        floatingLabelFixed={false}
           value={currentSearchParams.bodyType}
         onChange={
           (event, key, payload) => {
@@ -148,9 +148,8 @@ const SearchPanel = ({
         //Цена за час
       }
       <br />
-      <div style={{ float: "left" }}>
-      Цена за час
-      <br />
+      <div className='searchPanelItem' style={{ float: 'left' }}>
+      <p style={{ height: '5px', marginBottom: '-5px', marginTop: '-3px' }}>Цена за час, USD:</p>
         <TextField
           floatingLabelText="От"
           hintText={searchParams.minPricePerHour}
@@ -189,10 +188,8 @@ const SearchPanel = ({
         //Цена за день
       }
       <br />
-      <div style={{ float: "left" }}>
-          Цена за день
-
-          <br />
+      <div className='searchPanelItem' style={{ float: "left" }}>
+      <p style={{ height: '5px', marginBottom: '-5px', marginTop: '-3px' }}>Цена за день, USD:</p>
           <TextField
             floatingLabelText="От"
             hintText={searchParams.minPricePerDay}
@@ -232,13 +229,13 @@ const SearchPanel = ({
 
 
       {
-        // Тип КПП
+        // Тип Т/С
       }
       <br />
-      <div style={{ float: 'left' }}>
+      <div className='searchPanelSelect' style={{ float: 'left' }}>
       <SelectField
         floatingLabelText="Тип Т/С"
-        floatingLabelFixed={true}
+        floatingLabelFixed={false}
         value={currentSearchParams.type}
         onChange={
           (event, key, payload) => {

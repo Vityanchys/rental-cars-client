@@ -13,7 +13,7 @@ const VehiclePage = ({
 
     <Card className="card-vehicle-page">
       <CardText>
-        <h1>Информация о Т/С</h1>
+        <h1>Информация об автомобиле</h1>
 
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "center"}}>
           <div style={{ display: "flex", flexDirection: "column" }}>
