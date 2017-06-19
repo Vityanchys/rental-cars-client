@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import EditProfileForm from '../components/EditProfileForm';
 import User from '../modules/User';
 import UserAPI from "../services/api/UserAPI";
-import Validate from "../services/Validate";
+import ValidateProfile from "../services/ProfileEditValidate";
+
+import {Redirect} from 'react-router-dom';
 
 class EditProfileRoute extends Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class EditProfileRoute extends Component {
     if (user.password === '') {
       user.password = null;
     }
-    const checkResult = await Validate.checkUser(user);
+    const checkResult = await ValidateProfile.checkUser(user);
     if (!checkResult.success) {
       this.setState({ errors: checkResult.errors });
       return;
@@ -71,6 +73,9 @@ class EditProfileRoute extends Component {
   }
 
   render() {
+    if (this.state.complete) {
+      return <Redirect to="/profile" />
+    }
     return (
       <EditProfileForm
         onSubmit={this.onSubmit}
