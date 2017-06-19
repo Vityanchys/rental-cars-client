@@ -14,7 +14,7 @@ const UserPage = ({
       <h1>Информация о пользователе</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <img alt="img" src={user.image} style={{ maxWidth: "600px", width: "100%" }} />
-        {User.get() && User.get().admin &&
+        {User.get() && User.get().admin && User.get().id !== user.id &&
           <RaisedButton
             onClick={onDelete}
             label="Удалить Пользователя"
