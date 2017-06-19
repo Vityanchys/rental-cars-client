@@ -13,6 +13,9 @@ class Footer extends Component {
             <Link to="/aboutUs">
               <FlatButton label="О компании"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
             </Link>
+            <Link to="/contacts">
+              <FlatButton label="Контакты"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
+            </Link>
             </div>
             <div>
               © 2017

@@ -1,29 +1,20 @@
-import { React, Component }  from 'react';
-import { Link } from 'react-router-dom';
-import { Card, RaisedButton } from 'material-ui';
-import { AppBar, FlatButton } from 'material-ui';
+import  React, { Component }  from 'react';
 
 
 
 class AboutCompanyPage extends Component {
   render() {
     return (
-      <AppBar
-        showMenuIconButton={false}
-        title={
-          <div style={{ fontSize: "small" }}>
-            <div style={{ float: 'left'}}>
-            <Link to="/aboutUs">
-              <FlatButton label="
-"  labelStyle={{ color: "white" , fontSize: 'small'}}/>
-            </Link>
-            </div>
-            <div>
-              © 2017
-            </div>
-          </div>
-        }
-      ></AppBar>
+      <div className='aboutCompany'>
+        <h2>О компании</h2>
+        <div className='aboutContent'>
+          Компния проката транспортных средств была создана в 2017 году. Целью компании является осуществлении помощи людям,
+          у которых есть надобность в использовании транспортного средства, но нет этого транспорта в своём распоряжении.
+          Наша компания предлагает выход из этой ситуации - аренда транспортного средства у нашей компании.
+          Гибкий выбор транспортных средств по разным критериям, осуществление бронирования заранее, индивидуальный
+          подход к каждому клиенту - это далеко не все, за что клиенты выбирают именно нас.
+        </div>
+      </div>
   );
   }
 }

@@ -1,14 +1,10 @@
 import React from "react";
 import { Card } from 'material-ui/Card';
-import { CardActions, CardMedia, CardTitle } from 'material-ui/Card';
+import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 
 import {List, ListItem} from 'material-ui/List';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import Divider from 'material-ui/Divider';
-import Avatar from 'material-ui/Avatar';
-import {pinkA200, transparent} from 'material-ui/styles/colors';
 
 
 function UsersPage(props) {

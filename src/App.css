@@ -29,8 +29,21 @@ html, body, #root { height: 100%; }
   to { transform: rotate(360deg); }
 }
 
+.aboutContent {
+  margin: 0 200px;
+  text-align: center;
+
+}
+
 .btn {
   padding: 100px 0 0 0;
+}
+
+.contacts {
+  float: left;
+  text-align: left;
+  margin-left: 50px;
+  font-size: large;
 }
 
 .editProfile {

@@ -20,6 +20,7 @@ import EditProfileRoute from './containers/EditProfileRoute';
 import UserRoute from './containers/UserRoute';
 import UsersRoute from './containers/UsersRoute';
 import AboutCompanyPage from './components/AboutCompanyPage';
+import Contacts from './components/Contacts';
 import User from './modules/User';
 import Auth from './modules/Auth';
 
@@ -83,6 +84,7 @@ class App extends Component {
                   <HomePage {...props} onMessage={this.handleSnackbarMessage} />
                 )} />
                 <Route path='/aboutUs' component={AboutCompanyPage} />
+                <Route path='/contacts' component={Contacts} />
                 {
                   user &&
                   <Switch>
