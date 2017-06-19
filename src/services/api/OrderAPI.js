@@ -27,3 +27,17 @@ exports.getHistory = async (id) => {
     history = response.json();
     return history;
 }
+
+exports.freeDates = async (id) => {
+    let freeDates;
+    const response = await fetch(ServerURL + 'order/freedates/' + id, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'x-auth-token': Auth.getToken()
+        },
+        body: {}
+    })
+    freeDates = response.json();
+    return freeDates;
+}

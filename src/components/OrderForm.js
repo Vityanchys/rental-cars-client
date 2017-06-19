@@ -1,8 +1,24 @@
-import React from 'react';
-import { Card, CardHeader, CardMedia, CardText, CardTitle, CardActions, FlatButton, DatePicker } from 'material-ui';
+import React from "react";
+import {
+    Card,
+    CardActions,
+    CardHeader,
+    CardMedia,
+    CardText,
+    CardTitle,
+    DatePicker,
+    FlatButton,
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn
+} from "material-ui";
 
 const OrderForm = ({
   vehicle,
+  freeDates,
   user,
   order,
   orderDateTime,
@@ -24,6 +40,26 @@ const OrderForm = ({
         <img src={vehicle.image} alt="" />
       </CardMedia>
       <CardTitle title={"Стоимость: $" + order.price + " (Дней: " + order.days + ")"} subtitle={"Стоимость за сутки: $" + vehicle.pricePerDay} />
+        <div className="vehicles">
+            <Table>
+                <TableHeader displaySelectAll={false}>
+                    <TableRow>
+                        <TableHeaderColumn>Свободные даты</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                    {
+                        freeDates.map((date) => {
+                            return <TableRow>
+                                <TableRowColumn>
+                                    {date.date}
+                                </TableRowColumn>
+                            </TableRow>
+                        })
+                    }
+                </TableBody>
+            </Table>
+        </div>
       <CardText>
         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }} >
           <DatePicker

@@ -16,6 +16,7 @@ class OrderPage extends React.Component {
       returnDateTime: null,
       user: User.get(),
       vehicle: null,
+      freeDates: null,
       order: {
         price: 0,
         days: 0
@@ -25,7 +26,8 @@ class OrderPage extends React.Component {
 
   async componentDidMount() {
     let vehicle = await VehiclesAPI.getVehicle(this.props.match.params.id);
-    this.setState({ vehicle, loaded: true })
+    let freeDates = await OrderAPI.freeDates(vehicle.id);
+    this.setState({ vehicle, freeDates,loaded: true })
   }
 
   handleDateChange = (name, value) => {
@@ -117,6 +119,7 @@ class OrderPage extends React.Component {
     return (
       <OrderForm
         vehicle={this.state.vehicle}
+        freeDates={this.state.freeDates}
         user={this.state.user}
         order={this.state.order}
         orderDateTime={this.state.orderDateTime}
