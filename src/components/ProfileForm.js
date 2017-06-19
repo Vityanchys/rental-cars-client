@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, RaisedButton } from 'material-ui';
+import React from "react";
+import {Link} from "react-router-dom";
+import {Card, RaisedButton} from "material-ui";
 
 const ProfileForm = ({
   user,
@@ -18,6 +18,7 @@ const ProfileForm = ({
             <Link to='/editUserInformation'>
               <RaisedButton label="Редактировать" />
             </Link>
+            <RaisedButton label="История" href={"getOrderHistory/" + user.id} />
             <RaisedButton label="Избранное" />
           </div>
         </div>

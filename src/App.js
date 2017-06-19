@@ -23,6 +23,7 @@ import AboutCompanyPage from './components/AboutCompanyPage';
 import Contacts from './components/Contacts';
 import User from './modules/User';
 import Auth from './modules/Auth';
+import OrderHistoryRoute from "./containers/OrderHistoryRoute";
 
 class App extends Component {
   constructor(props) {
@@ -99,6 +100,7 @@ class App extends Component {
                     <Route path='/editUserInformation' render={(props) => (
                       <EditProfileRoute {...props} onUserUpdate={this.handleUserUpdate} />
                     )} />
+                    <Route path='/getOrderHistory/:id' component={OrderHistoryRoute} />
                     <Route path="/logout" render={() => (
                       <div>
                         {this.deauthenticate()}
