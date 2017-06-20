@@ -163,3 +163,7 @@ html, body, #root { height: 100%; }
 .footer {
   flex: 0 0 auto;
 }
+
+.card {
+  margin: 20px auto;
+}
