@@ -7,7 +7,7 @@ function Vehicle(props) {
   return (
     <Card className="vehicle-card">
       <CardMedia
-        overlay={<CardTitle title={props.mark + " " + props.model} subtitle={props.pricePerDay + "$ (status - " + props.status + ")"} />}
+        overlay={<CardTitle title={props.mark + " " + props.model + ", " + props.year + "г"} subtitle={props.pricePerDay + "$/день (Тип КПП - " + props.gearbox + ")"} />}
       >
         <img alt="img" src={props.image} width="50%" />
       </CardMedia>

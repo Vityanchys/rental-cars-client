@@ -10,6 +10,8 @@ function Vehicles(props) {
           key={vehicle.id}
           mark={vehicle.mark}
           model={vehicle.model}
+          year={vehicle.year}
+          gearbox={vehicle.gearboxType}
           image={vehicle.image}
           pricePerDay={vehicle.pricePerDay}
           status={vehicle.status}

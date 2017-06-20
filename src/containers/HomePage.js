@@ -3,7 +3,13 @@ import Vehicles from '../components/Vehicles';
 import { CircularProgress } from 'material-ui';
 import VehiclesAPI from '../services/api/VehiclesAPI';
 import Pagination from 'material-ui-pagination';
-import SearchPanel from '../components/SearchPanel'
+import SearchPanel from '../components/SearchPanel';
+
+import { ActionSearch, ContentClear } from 'material-ui/svg-icons';
+import { FloatingActionButton, Drawer, AppBar } from 'material-ui';
+
+import Measure from 'react-measure'
+
 
 class HomePage extends Component {
   constructor(props) {
@@ -27,7 +33,13 @@ class HomePage extends Component {
       },
       searchParams: {}, //Все возможные критерии поиска
       page: 1,
-      pages: 0
+      pages: 0,
+      //панель поиска
+      searchPanelDesktopOpen: false,
+
+      dimensions: {
+        width: -1,
+      }
     }
     this.onChangePage = this.onChangePage.bind(this);
   }
@@ -118,7 +130,7 @@ class HomePage extends Component {
       minYear: new Date().getFullYear(),
       maxYear: 0,
       gearboxTypes: [],
-      bodyTypes : [],
+      bodyTypes: [],
       minPricePerDay: vehicles[0].pricePerDay,
       maxPricePerDay: 0,
       minPricePerHour: vehicles[0].pricePerHour,
@@ -142,7 +154,7 @@ class HomePage extends Component {
         searchParams.gearboxTypes.push(vehicle.gearboxType);
       }
       if (searchParams.bodyTypes.indexOf(vehicle.bodyType) === -1) {
-          searchParams.bodyTypes.push(vehicle.bodyType);
+        searchParams.bodyTypes.push(vehicle.bodyType);
       }
       if (vehicle.pricePerDay > searchParams.maxPricePerDay) {
         searchParams.maxPricePerDay = vehicle.pricePerDay;
@@ -187,16 +199,87 @@ class HomePage extends Component {
     }, 10);
   }
 
+  handleSearchPanelDesktopTogle = () => this.setState({ searchPanelDesktopOpen: !this.state.searchPanelDesktopOpen });
+
   render() {
+    const { width } = this.state.dimensions
+    let searchPanel =
+      <SearchPanel
+        currentSearchParams={this.state.currentSearchParams}
+        searchParams={this.state.searchParams}
+        onSearchPanelChange={this.handleSearchPanelChange}
+      />
+
     if (this.state.loaded) {
       this.scrollUp();
       return (
         <div>
-          <SearchPanel
-            currentSearchParams={this.state.currentSearchParams}
-            searchParams={this.state.searchParams}
-            onSearchPanelChange={this.handleSearchPanelChange}
-          />
+
+          <Measure
+            bounds
+            onResize={(contentRect) => {
+              this.setState({ dimensions: contentRect.bounds })
+            }}
+          >
+            {({ measureRef }) =>
+              <div ref={measureRef}>
+                {
+                  (width > 650) ?
+                    <div className="search-panel-desktop">
+                      <Drawer width={380} openSecondary={true} open={this.state.searchPanelDesktopOpen} >
+                        <AppBar showMenuIconButton={false} title="Поиск" />
+                        {searchPanel}
+                      </Drawer>
+                      <FloatingActionButton
+                        style={{
+                          margin: "0px",
+                          top: "auto",
+                          right: "20px",
+                          bottom: "40px",
+                          left: "auto",
+                          position: "fixed",
+                          zIndex: "66666666"
+                        }}
+                        onClick={this.handleSearchPanelDesktopTogle}
+                        secondary={this.state.searchPanelDesktopOpen}
+                      >
+                        {this.state.searchPanelDesktopOpen ?
+                          <ContentClear />
+                          :
+                          <ActionSearch />
+                        }
+                      </FloatingActionButton>
+                    </div>
+                    :
+                    <div className="search-panel-mobile">
+                      <Drawer width={380} docked={false} openSecondary={true} open={this.state.searchPanelDesktopOpen} >
+                        {searchPanel}
+                      </Drawer>
+                      <FloatingActionButton
+                        style={{
+                          margin: "0px",
+                          top: "auto",
+                          right: "auto",
+                          bottom: "40px",
+                          left: "20px",
+                          position: "fixed",
+                          zIndex: "66666666"
+                        }}
+                        onClick={this.handleSearchPanelDesktopTogle}
+                        secondary={this.state.searchPanelDesktopOpen}
+                      >
+                        {this.state.searchPanelDesktopOpen ?
+                          <ContentClear />
+                          :
+                          <ActionSearch />
+                        }
+                      </FloatingActionButton>
+                    </div>
+                }
+              </div>
+            }
+          </Measure>
+
           {this.state.currentVehicles ?
             <Vehicles vehicles={this.state.currentVehicles.slice(this.state.page * 3 - 3, this.state.page * 3)} />
             :

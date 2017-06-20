@@ -33,51 +33,51 @@ const VehiclePage = ({
                 displayRowCheckbox={false}
               >
                 <TableRow>
-                  <TableRowColumn>Mark:</TableRowColumn>
+                  <TableRowColumn>Марка автомобиля:</TableRowColumn>
                   <TableRowColumn>{vehicle.mark}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Model:</TableRowColumn>
+                  <TableRowColumn>Модель:</TableRowColumn>
                   <TableRowColumn>{vehicle.model}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Year:</TableRowColumn>
+                  <TableRowColumn>Год выпуска:</TableRowColumn>
                   <TableRowColumn>{vehicle.year}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Gearbox type:</TableRowColumn>
+                  <TableRowColumn>Тип КПП:</TableRowColumn>
                   <TableRowColumn>{vehicle.gearboxType}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Engine volume:</TableRowColumn>
+                  <TableRowColumn>Объём двигателя, л:</TableRowColumn>
                   <TableRowColumn>{vehicle.engineVolume}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Body type:</TableRowColumn>
+                  <TableRowColumn>Тип кузова:</TableRowColumn>
                   <TableRowColumn>{vehicle.bodyType}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Capacity:</TableRowColumn>
+                  <TableRowColumn>Количество мест:</TableRowColumn>
                   <TableRowColumn>{vehicle.capacity}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Carrying capacity:</TableRowColumn>
+                  <TableRowColumn>Грузоподъёмность:</TableRowColumn>
                   <TableRowColumn>{vehicle.carryingCapacity}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Price per hour:</TableRowColumn>
+                  <TableRowColumn>Цена за час, USD:</TableRowColumn>
                   <TableRowColumn>{vehicle.pricePerHour}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Price per day:</TableRowColumn>
+                  <TableRowColumn>Цена за день, USD:</TableRowColumn>
                   <TableRowColumn>{vehicle.pricePerDay}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Type:</TableRowColumn>
+                  <TableRowColumn>Тип:</TableRowColumn>
                   <TableRowColumn>{vehicle.type}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Status:</TableRowColumn>
+                  <TableRowColumn>Статус:</TableRowColumn>
                   <TableRowColumn>{vehicle.status}</TableRowColumn>
                 </TableRow>
               </TableBody>

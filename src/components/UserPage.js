@@ -4,7 +4,7 @@ import { Card } from 'material-ui/Card';
 import User from '../modules/User';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
+import defaultAvatar from '../images/avatar.png';
 
 const UserPage = ({
   user,
@@ -13,8 +13,8 @@ const UserPage = ({
     <Card className="vehicleInfo">
       <h1>Информация о пользователе</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <img alt="img" src={user.image} style={{ maxWidth: "600px", width: "100%" }} />
-        {User.get() && User.get().admin &&
+        <img alt="img" src={user.image || defaultAvatar} width="200px" />
+        {User.get() && User.get().admin && User.get().id !== user.id &&
           <RaisedButton
             onClick={onDelete}
             label="Удалить Пользователя"
