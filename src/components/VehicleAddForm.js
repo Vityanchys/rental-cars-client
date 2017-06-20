@@ -104,8 +104,6 @@ const VehicleAddForm = ({
                   <MenuItem value="Ручная" primaryText="Ручная" />
                 </SelectField>
               </div>
-            </div>
-            <div>
               <div>
                 <TextField
                   floatingLabelText="Объём двигателя"
@@ -115,6 +113,24 @@ const VehicleAddForm = ({
                   onChange={onChange}
                   value={vehicle.engineVolume}
                 />
+              </div>
+            </div>
+            <div>
+              <div>
+                <SelectField
+                  floatingLabelText="Тип Т\С"
+                  floatingLabelFixed={true}
+                  value={vehicle.type}
+                  errorText={errors.type}
+                  onChange={
+                    (event, key, payload) => {
+                      let name = "type"
+                      onMaterialFieldChange(name, payload)
+                    }} >
+                  <MenuItem value="Легковой" primaryText="Легковой" />
+                  <MenuItem value="Грузовой" primaryText="Грузовой" />
+                  <MenuItem value="Пассажирский" primaryText="Пассажирский" />
+                </SelectField>
               </div>
 
               <div>
@@ -180,7 +196,7 @@ const VehicleAddForm = ({
                   value={vehicle.pricePerHour}
                 />
               </div>
-
+              <div style={{margin: '25px'}}>
               <RaisedButton
                 label="Загрузить изображение"
                 labelPosition="before"
@@ -204,6 +220,7 @@ const VehicleAddForm = ({
 
               </RaisedButton>
               <RaisedButton type="submit" label="Добавить" primary />
+            </div>
             </div>
           </div>
         </form>
