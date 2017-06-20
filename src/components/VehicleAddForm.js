@@ -150,6 +150,8 @@ const VehicleAddForm = ({
                   <MenuItem value="Пикап" primaryText="Пикап" />
                   <MenuItem value="Купе" primaryText="Купе" />
                   <MenuItem value="Кабриолет" primaryText="Кабриолет" />
+                  <MenuItem value="Внедорожник" primaryText="Внедорожник" />
+                  <MenuItem value="Микроавтобус" primaryText="Микроавтобус" />
                 </SelectField>
               </div>
 
