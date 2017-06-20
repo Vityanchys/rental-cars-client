@@ -84,7 +84,7 @@ class VehicleRoute extends React.Component {
         <VehiclePage
           vehicle={this.state.vehicle}
           onDelete={this.handleDeleteCar}
-          id={this.state.vehicle.id} />;
+          id={this.state.vehicle.id} />
       </div >
     )
   }
