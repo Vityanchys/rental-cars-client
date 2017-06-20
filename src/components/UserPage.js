@@ -50,7 +50,7 @@ const UserPage = ({
             </TableRow>
             <TableRow>
               <TableRowColumn>Админ:</TableRowColumn>
-              <TableRowColumn>{user.admin}</TableRowColumn>
+              <TableRowColumn>{user.admin?'Администратор':'Пользователь'}</TableRowColumn>
             </TableRow>
           </TableBody>
         </Table>
