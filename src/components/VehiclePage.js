@@ -86,6 +86,6 @@ const VehiclePage = ({
         </div>
       </CardText>
     </Card>
-  );
+  )
 
 export default VehiclePage;
