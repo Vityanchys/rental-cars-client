@@ -49,7 +49,7 @@ const VehiclePage = ({
                   <TableRowColumn>{vehicle.gearboxType}</TableRowColumn>
                 </TableRow>
                 <TableRow>
-                  <TableRowColumn>Объём двигателя, л:</TableRowColumn>
+                  <TableRowColumn>Объём двигателя, куб.см.:</TableRowColumn>
                   <TableRowColumn>{vehicle.engineVolume}</TableRowColumn>
                 </TableRow>
                 <TableRow>
